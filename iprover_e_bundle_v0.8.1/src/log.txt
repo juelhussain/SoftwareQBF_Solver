@@ -1,0 +1,137 @@
+ %Problem files: /home/korovin/TPTP-v3.0.1/Problems/MSC/MSC002-1.p
+ 
+ Parsed formulas: 
+%--------------------------------------------------------------------------
+
+% File     : MSC002-1 : TPTP v3.0.1. Released v1.0.0.
+
+% Domain   : Miscellaneous
+
+% Problem  : A Blind Hand Problem
+
+% Version  : Especial.
+
+% English  : 
+
+% Refs     : [Pop70] Popplestone (1970), Freddy, Things and Sets
+
+%          : [MRS72] Michie et al. (1972), G-deduction
+
+%          : [WM76]  Wilson & Minker (1976), Resolution, Refinements, and S
+
+% Source   : [SPRFN]
+
+% Names    : DBABHP [MRS72]
+
+%          : DBABHP [WM76]
+
+% Status   : Unsatisfiable
+
+% Rating   : 0.00 v2.0.0
+
+% Syntax   : Number of clauses     :   14 (   1 non-Horn;   3 unit;  10 RR)
+
+%            Number of atoms       :   30 (   0 equality)
+
+%            Maximal clause size   :    3 (   2 average)
+
+%            Number of predicates  :    7 (   0 propositional; 1-3 arity)
+
+%            Number of functors    :    7 (   4 constant; 0-2 arity)
+
+%            Number of variables   :   36 (   8 singleton)
+
+%            Maximal term depth    :    4 (   1 average)
+
+% Comments : The symbols are explained in [MRS72].
+
+%--------------------------------------------------------------------------
+
+cnf(something_is_here_now,axiom,
+   at(something,here,now)).
+
+cnf(hand_let_go,axiom,
+   (~hand_at(Place,Situation)
+   |hand_at(Place,let_go(Situation)))).
+
+cnf(hand_go,axiom,
+   (~hand_at(Place,Situation)
+   |hand_at(Another_place,go(Another_place,Situation)))).
+
+cnf(cant_hold_and_let_go,axiom,
+   ~held(Thing,let_go(Situation))).
+
+cnf(everything_is_red,axiom,
+   (~at(Thing,here,Situation)
+   |red(Thing))).
+
+cnf(situation_let_go,axiom,
+   (~at(Thing,Place,Situation)
+   |at(Thing,Place,let_go(Situation)))).
+
+cnf(situation_pick_up,axiom,
+   (~at(Thing,Place,Situation)
+   |at(Thing,Place,pick_up(Situation)))).
+
+cnf(can_grab_if_previously_let_go,axiom,
+   (~at(Thing,Place,Situation)
+   |grabbed(Thing,pick_up(go(Place,let_go(Situation)))))).
+
+cnf(answer_if_red_and_put_there,axiom,
+   (~red(Thing)
+   |(~put(Thing,there,Situation)
+   |answer(Situation)))).
+
+cnf(can_put_somewhere_if_grab_and_go_there,axiom,
+   (~at(Thing,Place,Situation)
+   |(~grabbed(Thing,Situation)
+   |put(Thing,Another_place,go(Another_place,Situation))))).
+
+cnf(thing_either_held_or_went_there,axiom,
+   (held(Thing,Situation)
+   |(~at(Thing,Place,Situation)
+   |at(Thing,Place,go(Another_place,Situation))))).
+
+cnf(thing_goes_in_hand,axiom,
+   (~hand_at(One_place,Situation)
+   |(~held(Thing,Situation)
+   |at(Thing,Place,go(Place,Situation))))).
+
+cnf(thing_picked_up_by_hand,axiom,
+   (~hand_at(Place,Situation)
+   |(~at(Thing,Place,Situation)
+   |held(Thing,pick_up(Situation))))).
+
+cnf(prove_there_is_an_answer_situation,negated_conjecture,
+   ~answer(Situation)).
+
+%--------------------------------------------------------------------------
+end of parsed formulas 
+ 
+ %DB All_Symbols_DB:
+
+%----------------------------------------------------------
++,-,-u,answer,at,equal,false,go,grabbed,hand_at,held,here,let_go,now,pick_up,put,red,something,there,true,~,
+%----------------------------------------------------------
+%Size of DB All_Symbols_DB is 21
+ 
+ %DB All_Terms_DB:
+
+%----------------------------------------------------------
+~(at(X0,here,X1)),~(at(X0,X1,X2)),~(hand_at(X0,X1)),~(hand_at(X1,X2)),~(held(X0,let_go(X1))),~(held(X2,X1)),~(red(X0)),~(grabbed(X0,X2)),~(put(X0,there,X1)),~(answer(X0)),at(something,here,now),at(X0,here,X1),at(X0,X1,let_go(X2)),at(X0,X1,go(X3,X2)),at(X0,X1,pick_up(X2)),at(X0,X1,X2),at(X2,X3,go(X3,X1)),something,here,now,hand_at(X0,let_go(X1)),hand_at(X0,X1),hand_at(X1,X2),hand_at(X2,go(X2,X1)),let_go(X1),let_go(X2),go(X1,let_go(X2)),go(X2,X1),go(X3,X1),go(X3,X2),held(X0,let_go(X1)),held(X0,pick_up(X2)),held(X0,X2),held(X2,X1),red(X0),pick_up(go(X1,let_go(X2))),pick_up(X2),grabbed(X0,pick_up(go(X1,let_go(X2)))),grabbed(X0,X2),put(X0,there,X1),put(X0,X3,go(X3,X2)),there,answer(X0),answer(X1),X0,X1,X2,X3,
+%----------------------------------------------------------
+%Size of DB All_Terms_DB is 48
+ 
+ initial clauses are added to passive 
+ 
+ 
+ Picked_clause_is_dead 
+ 
+ 
+ PROVED !!! 
+ num_of_forward_subset_subsumed: 4838
+num_of_backward_subset_subsumed: 4873
+num_of_tautology_del: 0
+num of clauses in db: 29053
+num of discount iterations: 7444
+ 

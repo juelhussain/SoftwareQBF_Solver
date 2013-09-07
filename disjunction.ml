@@ -149,43 +149,47 @@ module Disjunction =
     in iter (at 1 nodesList) (1) (-1)
 		
 		
-		(* This gives a disjunction over bdds (nodes list) given. Takes global dag *)
-		(* as input which holds each nodes from nodes list as bdd and returns *)
-		(* the global dag in modified form. *)
-		let disjunction (nList) (eList) (h) (t) =
-    	let rec disjunction' (nodesList) (expList) (m1) = 
-    		Printf.printf "Recursion m = %d\n" m1;
-    		let rec cycleNodes m = 
-    			Printf.printf "CycleNode m = %d\n" m;
-    			let element = (at m nodesList) in 
-    			if ((m1=1) || (m1<1)) then 
-    				begin
-    					print_string ("Not enough elements. Node only: \n"^(print_bdd element)^"\n"); element
-    				end
-    			else if (m>1) then
-    			begin
-    				match element with
-    				| One -> print_string "One\n"; One
-    				| Zero -> print_string "Zero\n"; disjunction' (drop nodesList m) (drop expList m) (m1-1)
-    				| _ -> cycleNodes(m-1)
-    			end
-    			else
-    				begin
-    					match element with
-    					| One -> print_string "One\n"; One
-    					| Zero -> print_string "Zero\n"; disjunction' (drop nodesList m) (drop expList m) (m1-1)
-    					| _ -> let maxVar = select_max_var (nodesList) in 
-    						let left = get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
-    						let right = get_low_high_list_Right (nodesList) (expList) (h) (t) (maxVar) in
-    						let leftX = get_low_high_list_Vals_Left (expList) (maxVar) in
-    						let rightX = get_low_high_list_Vals_Right (expList) (maxVar) in
-    						let k1 = disjunction' (left) (leftX) (List.length left) in
-    						let k2 = disjunction' (right) (rightX) (List.length right) in
-    						make (maxVar) (k1) (k2) (h) (t);
-    				end
-    			(*Printf.printf "Select Max Variable";*)
-    			(*Printf.printf "For All 1 .. m";*)
-    		in cycleNodes (m1)
-    	in disjunction' (nList) (eList) (List.length nList);;
-					
+  (* This gives a disjunction over bdds (nodes list) given. Takes global *)
+  (* dag as input which holds each nodes from nodes list as bdd and      *)
+  (* returns the global dag in modified form.                            *)
+  let disjunction (nList) (eList) (h) (t) =
+  	let rec disjunction' (nodesList) (expList) (m1) =
+  		Printf.printf "Recursion m = %d\n" m1;
+  		let rec cycleNodes m =
+  			Printf.printf "CycleNode m = %d\n" m;
+  			let element = (at m nodesList) in
+  			if (m1 < 2) then
+  				begin
+  					print_string 
+						("Not enough elements. Node only: \n"^(print_bdd element)^"\n"); 
+  					element
+  				end
+  			else if (m >1) then
+  				begin
+  					match element with
+  					| One -> print_string "One\n"; One
+  					| Zero -> print_string "Zero\n"; 
+  						disjunction' (drop nodesList m) (drop expList m) (m1 -1)
+  					| _ -> cycleNodes(m -1)
+  				end
+  			else
+  				begin
+  					match element with
+  					| One -> print_string "One\n"; One
+  					| Zero -> print_string "Zero\n"; 
+  						disjunction' (drop nodesList m) (drop expList m) (m1 -1)
+  					| _ -> let maxVar = select_max_var (nodesList) in
+							let left = 
+								get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
+							let right = 
+								get_low_high_list_Right (nodesList) (expList) (h) (t) (maxVar) in
+							let leftX = get_low_high_list_Vals_Left (expList) (maxVar) in
+							let rightX = get_low_high_list_Vals_Right (expList) (maxVar) in
+							let k1 = disjunction' (left) (leftX) (List.length left) in
+							let k2 = disjunction' (right) (rightX) (List.length right) in
+							make (maxVar) (k1) (k2) (h) (t);
+  				end
+  		in cycleNodes (m1)
+  	in disjunction' (nList) (eList) (List.length nList)
+						
 	end;;
