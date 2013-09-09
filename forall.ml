@@ -1,5 +1,5 @@
 
-module Exists =
+module Forall =
 struct
 	
 	let checkList listV var =
@@ -24,12 +24,11 @@ struct
 				end
 		in list1 (0)
 	
-	(* This gives a existential quantification over bdds (nodes list) and      *)
-	(* quantified variables list given. Takes global dag as input which holds  *)
-	(* each nodes from nodes list as bdd and returns the global dag in         *)
-	(* modified form.                                                          *)
-	let exists (vList) (nList) (eList) (h) (t) =
-		let rec exists' (varList) (nodesList) (expList) (m1) =
+	(* This gives a universal quantification over bdds (nodes list) given.   *)
+	(* Takes global dag as input which holds each nodes from nodes list as   *)
+	(* bdd and returns the global dag in modified form.                      *)
+	let forall (vList) (nList) (eList) (h) (t) =
+		let rec forall' (varList) (nodesList) (expList) (m1) =
 			Printf.printf "Recursion m = %d\n" m1;
 			let rec cycleNodes m =
 				Printf.printf "CycleNode m = %d\n" m;
@@ -37,24 +36,24 @@ struct
 					begin
 						let element = (at m nodesList) in
 						match element with
-						| One -> print_string "One\n"; One
-						| Zero -> print_string "Zero\n";
-								exists' (varList) (drop nodesList m) (drop expList m) (m1 -1)
+						| Zero -> print_string "Zero\n"; Zero
+						| One -> print_string "One\n";
+								forall' (varList) (drop nodesList m) (drop expList m) (m1 -1)
 						| _ -> cycleNodes(m -1)
 					end
 				else if (m1 < 1) then
 					begin
 						print_string
 							("0 elements\n");
-						Zero
+						One
 					end
 				else
 					begin
 						let element = (at m nodesList) in
 						match element with
-						| One -> print_string "One\n"; One
-						| Zero -> print_string "Zero\n";
-								exists' (varList) (drop nodesList m) (drop expList m) (m1 -1)
+						| Zero -> print_string "Zero\n"; Zero
+						| One -> print_string "One\n";
+								forall' (varList) (drop nodesList m) (drop expList m) (m1 -1)
 						| _ -> let maxVar = select_max_var (nodesList) in
 								let left =
 									get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
@@ -63,14 +62,14 @@ struct
 								let leftX = get_low_high_list_Vals_Left (expList) (maxVar) in
 								let rightX = get_low_high_list_Vals_Right (expList) (maxVar) in
 								if (checkList varList maxVar) then
-									exists' (drop varList (checkListNo varList maxVar)) (left@right) (leftX@rightX)
+									forall' (drop varList (checkListNo varList maxVar)) (left@right) (leftX@rightX)
 										((List.length left) + (List.length right))
 								else
-									let k1 = exists' (varList) (left) (leftX) (List.length left) in
-									let k2 = exists' (varList) (right) (rightX) (List.length right) in
+									let k1 = forall' (varList) (left) (leftX) (List.length left) in
+									let k2 = forall' (varList) (right) (rightX) (List.length right) in
 									make (maxVar) (k1) (k2) (h) (t);
 					end
 			in cycleNodes (m1)
-		in exists' (vList) (nList) (eList) (List.length nList)
+		in forall' (vList) (nList) (eList) (List.length nList)
 	
 end;;

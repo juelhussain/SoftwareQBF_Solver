@@ -1,8 +1,11 @@
 module Build = 
 	struct
-		
-	exception TerminalNode;;
-
+	
+	open Syntax
+	
+	
+	exception TerminalNode
+	
 	(* get variable number of a node *)
     let var (u : int) t = 
       match Hashtbl.find t u with
@@ -79,7 +82,7 @@ module Build =
       match e with
         | True -> false
         | False -> false
-        | Var i -> let Var j = v in j == i (* important part *)
+        | Var i -> let Var j = v in j = i (* important part *)
         | And(x, y) -> var_bool v x || var_bool v y
         | Or(x, y) -> var_bool v x || var_bool v y
         | BImp(x, y) -> var_bool v x || var_bool v y
@@ -92,7 +95,7 @@ module Build =
       match e with
         | True -> True
         | False -> False
-        | Var i -> let Var j = v in if j == i then asgmt else e
+        | Var i -> let Var j = v in if j = i then asgmt else e
         | And(x, y) -> And (var_lookup v x asgmt, var_lookup v y asgmt)
         | Or(x, y) -> Or (var_lookup v x asgmt, var_lookup v y asgmt)
         | BImp(x, y) -> BImp (var_lookup v x asgmt, var_lookup v y asgmt)
@@ -104,7 +107,7 @@ module Build =
 	let rec print_exp (exp: expression) = match exp with 
     | True -> print_string "True"
     | False -> print_string "False"
-    | Var x -> Printf.printf "Var %d" x
+    | Var x -> Printf.printf "Var %s" x
     | And(x,y) ->  print_string "And ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
     | Or(x,y) ->  print_string "Or ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
     | Imp(x,y) ->  print_string "Imp ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
@@ -147,8 +150,8 @@ module Build =
             Node(i, low, high)
 				end
   
-	let build (exp : expression) (h) (t) : bdd = 
-      let rec build' (e : expression) (i : int) : bdd =
+	let build (exp) (h) (t) : bdd = 
+      let rec build' (e) (i : int) : bdd =
         match e with 
           | True -> 
               (* Add One to the hash table *)
@@ -164,16 +167,16 @@ module Build =
                 let _ = Hashtbl.add t 0 (Zero) in Zero
           | _ -> 
               (* Check if the variable i is in the expression, move on if not*)
-              if var_bool (Var i) e then
+              if var_bool (Var (string_of_int i)) e then
                 (* recursively call build on low and high branches after var i
                  * is replaced with True for high branch and False for low
                  * branch *)
                 let low = 
-                  build' (eval (var_lookup (Var i) e False)) (i+1) in
-                let high = build' (eval (var_lookup (Var i) e True)) (i+1) in
+                  build' (eval (var_lookup (Var (string_of_int i)) e False)) (i+1) in
+                let high = build' (eval (var_lookup (Var (string_of_int i)) e True)) (i+1) in
                   make (i) (low) (high) (h) (t)
               else build' (eval e) (i + 1) (* make creates the node *)
       in build' exp 1
     	
 		
-	end;;
+end;;
