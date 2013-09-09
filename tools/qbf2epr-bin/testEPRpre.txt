@@ -1,0 +1,1 @@
+fof(quant,axiom,(! [Y1,Y2] : ? [X1,X2] : (p(Y1) | p(X1) | esk1_2(X1,X2)) & (p(Y1) | p(Y2)) & (p(Y2) | p(X2) | esk2_2(X1,X2)))).

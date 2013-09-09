@@ -1,0 +1,10 @@
+fof(quant,axiom,(
+	 ? [ V1,V2 ] :  
+	 ! [ V3,V4 ] :  
+	 ? [ V5,V6 ] :  
+	 ( 
+	 p(true) & ~p(false) & 
+  (  p(V1) |  p(V3) |  p(V5)) 
+	 & (  p(V1) |  p(V2)) 
+	 & (  p(V2) |  p(V4) |  p(V6))  ) 
+)).

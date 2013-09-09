@@ -1,0 +1,35 @@
+qbf2epr is a tool for translating QBF formulas in QDIMACS format to 
+various other formalisms like first-order, EPR, second-order
+
+The following options are supported:
+ 
+usage: main.py [options]
+
+Options:
+  -h, --help            	show this help message and exit
+  -i FILE, --infile=FILE	qdimacs input FILE
+  -o FILE, --outfile=FILE	output FILE
+  -t TYPE, --type=TYPE  	transformation type: [q,e,f,c,s]  	
+				[q] 	print QBF as it is
+				[e]	print EPR with prefix
+				[f]	print first-order
+                        	[c]	print EPR in CNF
+				[s] 	print second-order
+				[d]	print EPR under standard dependency scheme
+  -f, --disable-formatcheck
+  -q, --quiet          
+
+Note: The -t d options uses the standard dependency scheme 
+implemented in the QBF solver DepQBF (fmv.jku.at/depqbf).
+For using option -t d, the depService binary has to be in the path.
+The depService binary is available in the service subfolder
+
+
+
+-------
+CONTACT
+-------
+
+For comments, questions, bug reports etc. related to qbf2epr
+please contact Martina Seidl (see also http://fmv.jku.at/seidl)
+

@@ -1,0 +1,51 @@
+----------
+GENERAL INFORMATION
+----------
+
+
+depService is a tool for calculating dependencies in 
+QBFs according to the standard dependency scheme
+
+depService is based on the QBF solver DepQBF (fmv.jku.at/depqbf),
+which has to be downladed for making depService
+
+
+----------
+COMPILATION AND USAGE
+----------
+
+
+1.) Download DepQBF (fmv.jku.at/depqbf)
+2.) Adopt paths in Makefile
+3.) Call make
+4.) put depService in you bin directory or change path in qbfparser.py
+
+
+----------
+REFERENCE to DepQBF
+----------
+
+
+A system description appeared in JSAT:
+
+@article{DBLP:journals/jsat/LonsingB10,
+  author = {Florian Lonsing and
+               Armin Biere},
+  title = {DepQBF: A Dependency-Aware QBF Solver},
+  journal = {JSAT},
+  volume = {7},
+  number = {2-3},
+  year = {2010},
+  pages = {71-76},
+  ee = {http://jsat.ewi.tudelft.nl/content/volume7/JSAT7_6_Lonsing.pdf},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+
+-------
+CONTACT
+-------
+
+For comments, questions, bug reports etc. related to depService 
+ please contact Martina Seidl (see also http://fmv.jku.at/seidl)
+

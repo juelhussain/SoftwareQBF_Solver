@@ -1,0 +1,5 @@
+cnf(i_0_1,plain,(esk1_0 | p(X1) | esk3_2(X1,X2))).
+cnf(i_0_2,plain,(esk1_0 | esk2_0)).
+cnf(i_0_3,plain,(esk2_0 | p(X2) | esk4_2(X1,X2))).
+cnf(rule_true,axiom, p(1)).
+cnf(rule_false,axiom, ~p(0)).
