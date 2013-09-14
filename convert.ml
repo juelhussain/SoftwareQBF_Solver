@@ -133,10 +133,51 @@ module Convert =
 	let rec print_list = function 
 	[] -> ()
 	| e::l -> print_string e ; print_endline " " ; print_list l
-	 		
+	 
+	let string_index str splitVal =
+  try Some(String.index str splitVal)
+  	with Not_found -> None
+ 
+  let split splitter str =
+    let rec cycle varslist str =
+      match string_index str splitter with
+      | Some i ->
+          let this = String.sub str 0 i
+          and next = String.sub str (i+1) (String.length str - i - 1) in
+          if (this = "") then 
+						cycle varslist next 
+					else cycle (this::varslist) next
+      | None ->
+					if (str="") then List.rev varslist
+					else
+          List.rev(str::varslist)
+    in
+    cycle [] str		
+			
+			
+			
+	let string_to_disjunction stringClause = 
+		let listVars = split ' ' stringClause in 
+		let rec processListVars lv i exp=
+			if (i>(List.length lv)-1) then 
+				exp
+			else if (i>(List.length lv)-2) then 
+				begin
+					let finalvar = (List.nth lv i) in
+					processListVars lv (i+1) (Or(exp, Var finalvar)) 
+				end
+			else
+				begin
+					let var = (List.nth lv i) in
+					let exp2 = Or(Var var,exp) in
+					processListVars lv (i+1) (exp2) 
+				end
+		in processListVars listVars 1 (Var (List.nth listVars 0));;	
+			
+			
 	(* This will take a string list that has clauses and convert each clause *)
 	(* in to the expression representation and return an expression List*)
-	let covert_clauses_to_ExpressionList clauseList =
+	let convert_clauses_to_ExpressionList clauseList =
 		let rec getClause expressionList i =
 			if (i>(List.length clauseList)-1) then List.rev expressionList
 			else
@@ -148,11 +189,26 @@ module Convert =
 						getClause (False::expressionList) (i+1)
 					else 
 						begin
-						 getClause (True::expressionList) (i+1)
+						 getClause ((string_to_disjunction clause)::expressionList) (i+1)
 						end
 				end
 			in getClause [] 0;;			
 			
+			
+			
+			
+				
+	let convert_string_to_OR_clauseOld stringClause = 
+		let listVars = split ' ' stringClause in 
+		let rec processListVars lv i=
+			if (i>(List.length lv)-1) then 
+				print_endline "done" 
+			else
+				begin
+					print_endline (List.nth lv i);
+					processListVars lv (i+1)
+				end
+		in processListVars listVars 0;;	
 			
 	let covert_clauses_to_ExpressionListOld clauseList =
 		let rec getClause expressionList i =
