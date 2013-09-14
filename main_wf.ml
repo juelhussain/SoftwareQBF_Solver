@@ -2,7 +2,7 @@
    
 	
 		open Syntax;;
-		open Clauses;;
+	
 
    (** The end of file character. *)
    let eof =
@@ -19,6 +19,14 @@
    ;;
    
 	
+	
+	let run x = let lb =
+	Lexing.from_channel x in
+	Parser_dm.main (Lexer_dm.tokens) lb	;;
+
+	let rec print_list = function 
+	[] -> ()
+	| e::l -> print_string e ; print_endline " " ; print_list l
 	 
    (** Top level reads input, parses, evaluates and prints the result. *)
    let main =
@@ -28,15 +36,16 @@
          print_string "> ";	
          let str = read_line () in
            try
-						let e = Parser_dimacs.main Lexer_dimacs.token (Lexing.from_string str)
-						in
-  						print_endline (Clauses.clause_to_string(Clauses.getClause1(Clauses.getClause1(e))));		
+							Printf.printf "Will run the Lexer with %s file\n" str;
+							let clauseList = run(open_in str) in
+							Printf.printf "There are %d clause in the given file\n" (List.length clauseList);
+							print_list (List.rev clauseList)		
            with
              Failure str -> print_endline ("QBF_Solver- Error: " ^ str)						
             | Parsing.Parse_error -> print_endline "QBF_Solver- Syntax error."
+						| Sys_error str -> print_endline ("QBF_Solver- System error: " ^ str)
        done 
      with
        End_of_file -> print_endline "\nQBF_Solver- Good bye."
    ;;
-
 	(*String.contains "-c" "Test-c".[4];;*)

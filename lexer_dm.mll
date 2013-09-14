@@ -1,16 +1,18 @@
 {
-	open Parser_dm	
+	open Parser_dm
 }
 
 rule tokens = parse
 	| '\n' {tokens lexbuf}
 	| '0' {tokens lexbuf}
+	| ' '+'0' {ZERO(Lexing.lexeme lexbuf)}
+	| 'p' [^ '\n']+ as header {HEADER(header)}
+	| 'e' [^ '\n']+ as exists {EXISTS(exists)}
+	| 'a' [^ '\n']+ as forall {FORALL(forall)}
 	| eof {EOF}
-	| [^'\n' '0']+ as words {WORDS(words)}
+	| [^'p' '\n' 'e' 'a']+ as words {WORDS(words)}
+
+
+
 	
-	{
-		let run x = let lb =
-			Lexing.from_channel x in
-			Parser_dm.main tokens lb	
-	}
 	

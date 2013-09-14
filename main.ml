@@ -85,7 +85,12 @@
 						Printf.printf "QBF_Solver- You entered: %s \n" e;
 						let lenA = List.length stringList in
 						if lenA > 1 then (*options available*)
-							Printf.printf "QBF_Solver- Options selected: %s \n" (List.nth stringList 1)
+							begin
+								Printf.printf "QBF_Solver- Options selected: %s \n" (List.nth stringList 1);
+								print_endline "Will run the Lexer with test.qdimacs file";
+								let clauseList = Lexer_dm.run(open_in "test.qdimacs") in
+								Printf.printf "There are %d clause in the given file" (List.length clauseList)
+							end
 						else 
 							begin
 							Printf.printf "QBF_Solver- Options Not selected.\n";
