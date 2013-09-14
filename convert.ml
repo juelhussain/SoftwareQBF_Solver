@@ -120,10 +120,57 @@ module Convert =
     	| Exists(p, q) -> Exists(string_of_int (Hashtbl.find h p), replace_vars q h)
   
   
+	
+	(* This will take a formula and replace the variable by a natural ordering that *)
+	(* is tored in the hashtables and orginal formulas recovered from the *)
+	(* Hashtbl index value. *)
   	let convertFormula fm (h) (t)= 
   		let intList = insert_to_ht(get_vars fm []) (h) (t) in
   		replace_vars (fm) (h)
   		
+			
+			
+	let rec print_list = function 
+	[] -> ()
+	| e::l -> print_string e ; print_endline " " ; print_list l
+	 		
+	(* This will take a string list that has clauses and convert each clause *)
+	(* in to the expression representation and return an expression List*)
+	let covert_clauses_to_ExpressionList clauseList =
+		let rec getClause expressionList i =
+			if (i>(List.length clauseList)-1) then List.rev expressionList
+			else
+				begin
+				 let clause = (List.nth clauseList i) in 
+					if (clause.[0]='e') then
+						getClause (True::expressionList) (i+1)
+					else if (clause.[0]='p') then 
+						getClause (False::expressionList) (i+1)
+					else 
+						begin
+						 getClause (True::expressionList) (i+1)
+						end
+				end
+			in getClause [] 0;;			
+			
+			
+	let covert_clauses_to_ExpressionListOld clauseList =
+		let rec getClause expressionList i =
+			if (i>(List.length clauseList)-1) then List.rev expressionList
+			else
+				begin
+				 let clause = (List.nth clauseList i) in 
+					if (clause.[0]='e') then
+						getClause (True::expressionList) (i+1)
+					else if (clause.[0]='p') then 
+						getClause (False::expressionList) (i+1)
+					else 
+						begin
+						 getClause (True::expressionList) (i+1)
+						end
+				end
+			in getClause [] 0;;
+					
 	end ;;
 	
 	
