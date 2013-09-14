@@ -12,6 +12,14 @@ struct*)
 		| Forall of string * formula
 		| Exists of string * formula;;*)
 	
+	type var = int;;
+
+	type literal =
+		| Pos of int
+		| Not of int;;
+	
+	type clause = literal list;;
+	
 	type expression = 
 		| False 
 		| True 

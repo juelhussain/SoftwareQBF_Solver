@@ -6,6 +6,7 @@
 		open Build;;
 		open Eval;;
 		open Translate;;
+		open TranslateINF;; 
 
    (** The end of file character. *)
    let eof =
@@ -99,7 +100,8 @@
   								try 
   									let m = Build.build e3 (h) (t) in
     								print_endline ("QBF_Solver- "^(Build.print_bdd m));
-										print_endline ("QBF_Solver- CNF formula: "^(Translate.translate_to_cnf m))
+										print_endline ("QBF_Solver- Old CNF formula: "^(Translate.translate_to_cnf m));
+										print_endline ("QBF_Solver- New CNF formula: "^(TranslateINF.translate_to_cnf m))
 									with
              			Failure str1 -> print_endline ("QBF_Solver- Error: " ^ str1)
   							end
