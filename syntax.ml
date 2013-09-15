@@ -1,6 +1,6 @@
 (** Abstract syntax. *)
-(*module Syntax =
-struct*)
+module Syntax =
+struct
 	(*type formula = False
 		| True
 		| Var of string
@@ -58,4 +58,4 @@ struct*)
 		in
 		to_str (-1) e
 	
-(*end;;*)
+end;;

@@ -72,7 +72,8 @@
 							Printf.printf "There are %d clause in the given file\n" (List.length clauseList);
 							print_list (List.rev clauseList);
 							let expList = Convert.convert_clauses_to_ExpressionList (List.rev clauseList) in
-							print_exp_list (expList)		
+							print_exp_list (expList);
+							(*Manager.start		*)
            with
              Failure str -> print_endline ("QBF_Solver- Error: " ^ str)						
             | Parsing.Parse_error -> print_endline "QBF_Solver- Syntax error."

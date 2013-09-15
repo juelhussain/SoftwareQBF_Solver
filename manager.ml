@@ -6,21 +6,28 @@ module Manager = struct
 	let start expressionList (h) (t) = 
 		let rec build_exp exp_list bdd_list i =
 			if (i>(List.length expressionList)-1) then 
-				(*return the bdd list *)
-				bdd_list
-				(*check the expression is correct format*)
+				(*return the conjunction of obdd_list *)
+				begin
+				print_string "stage 3";
+				let conjunction_bdd = 
+					conjunction_clauses (exp_list) (bdd_list) (h) (t) in 
+					conjunction_bdd
+				end
 			else
 				begin
+					print_string "stage 1\n";
+					(*check the expression is correct format*)
 					let clause = (List.nth exp_list i) in 
 					if (check_clause exp) then 
 						begin
+							print_string "stage 2\n";
 							(*build the clause*)
 							let bdd = build_clause (clause) (h) (t) in 
 							build_exp exp_list (bdd::bdd_list) (i+1);
 						end
 					else (raise (Failure "The clause is not in correct format"))
 				end	
-			in build_exp expressionList [] 0;;
+		in build_exp expressionList [] 0;;
 	
 	
 	
@@ -35,7 +42,10 @@ module Manager = struct
 
 	(* 4/ For the clauses (now with OBDDs available) the conjunction *)
 	(* module will be run. *)
-	let conjunction_clauses = ();;
+	let conjunction_clauses expression_list bdd_list h t = 
+		Printf.printf "the size of expression list: %d \n obdd list: %d" 
+			(List.length expression_list) (List.length bdd_list);
+		"will run conjunction module";;
 	
 	(* 5/ Take the conjunction obdd and present the printout of the OBDD. *)
 	let get_conjunction_obdd = ();;
@@ -55,5 +65,28 @@ module Manager = struct
 	(* 10/ Return iprover stats along with time for solving.*)
 	(* This will include timing for wach individual section breakdown. *)
 	let get_results = ();;
+
+
+	(* 1/ This is the entry point to the full evaluation process *)
+	let start expressionListOld (h) (t) = 
+		let rec build_exp exp_list bdd_list i =
+			if (i>(List.length expressionList)-1) then 
+				(*return the bdd list *)
+				bdd_list
+				(*check the expression is correct format*)
+			else
+				begin
+					let clause = (List.nth exp_list i) in 
+					if (check_clause exp) then 
+						begin
+							(*build the clause*)
+							let bdd = build_clause (clause) (h) (t) in 
+							build_exp exp_list (bdd::bdd_list) (i+1);
+						end
+					else (raise (Failure "The clause is not in correct format"))
+				end	
+			in build_exp expressionList [] 0;;
+	
+
 
 	end;;
