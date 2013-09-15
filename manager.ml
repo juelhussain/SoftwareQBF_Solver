@@ -1,9 +1,54 @@
-module Manager = struct
+(*module Manager = struct*)
 	
+	open Syntax;;
 	open Build;;
+	open Operations;;
+	
+	
+	(* 1a/ This will remove the quantifiers from the expression list and saved *)
+	(* for later.*)
+	let remove_quants el = 
+		let rec elems el2 i = 
+			if (i>(List.length el)-1) then List.rev el2 else
+			let element = (List.nth el i) in 
+			match element with 
+			| Exists(_,_) -> elems el2 (i+1)
+			| Forall(_,_) -> elems el2 (i+1)
+			| _ -> elems (element::el2) (i+1)
+		in elems [] 0;;
+		
+	(* 1b/ This will get the quantifiers from the expression list as a *)
+	(* separate list*)
+	let sep_quants el = 
+		let rec elems el2 i = 
+			if (i>(List.length el)-1) then List.rev el2 else
+			let element = (List.nth el i) in 
+			match element with 
+			| Exists(_,_) -> elems (element::el2) (i+1)
+			| Forall(_,_) -> elems (element::el2) (i+1)
+			| _ -> elems (el2) (i+1)
+		in elems [] 0;;
+	
+	(* 2/ This where the expression list will be afforded. *)
+	(* Followed by correct data representation for each clause. *)
+	let check_clause exp = true;;
 
+	(* 3/ For each of the clauses the build function will be run *)
+	(* with the OBDDs for each data stored in the Hashtable. *)
+	let build_clause clause (h) (t) = 
+		let bdd = build (clause) (h) (t) in bdd;;
+
+	(* 4/ For the clauses (now with OBDDs available) the conjunction *)
+	(* module will be run. *)
+	let conjunction_clauses expression_list bdd_list h t = 
+		Printf.printf "the size of expression list: %d \n obdd list: %d\n" 
+			(List.length expression_list) (List.length bdd_list);
+		let con_bdd = Operations.conjunction (bdd_list) (expression_list) (h) (t)
+		in con_bdd;;
+	
 	(* 1/ This is the entry point to the full evaluation process *)
-	let start expressionList (h) (t) = 
+	let start_process expressionList (h) (t) = 
+		let expressionList = remove_quants (expressionList) in
 		let rec build_exp exp_list bdd_list i =
 			if (i>(List.length expressionList)-1) then 
 				(*return the conjunction of obdd_list *)
@@ -25,24 +70,6 @@ module Manager = struct
 					else (raise (Failure "The clause is not in correct format"))
 				end	
 		in build_exp expressionList [] 0;;
-	
-	
-	
-	(* 2/ This where the expression list will be afforded. *)
-	(* Followed by correct data representation for each clause. *)
-	let check_clause exp = true;;
-
-	(* 3/ For each of the clauses the build function will be run *)
-	(* with the OBDDs for each data stored in the Hashtable. *)
-	let build_clause clause (h) (t) = 
-		let bdd = build (clause) (h) (t) in bdd;;
-
-	(* 4/ For the clauses (now with OBDDs available) the conjunction *)
-	(* module will be run. *)
-	let conjunction_clauses expression_list bdd_list h t = 
-		Printf.printf "the size of expression list: %d \n obdd list: %d\n" 
-			(List.length expression_list) (List.length bdd_list);
-		"will run conjunction module";;
 	
 	(* 5/ Take the conjunction obdd and present the printout of the OBDD. *)
 	let get_conjunction_obdd = ();;
@@ -86,4 +113,4 @@ module Manager = struct
 	
 
 
-	end;;
+(*	end;;*)

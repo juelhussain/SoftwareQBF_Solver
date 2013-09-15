@@ -3,7 +3,7 @@
 	
 		open Syntax;;
 		open Convert;;
-		open Manager;;
+	
 
    (** The end of file character. *)
    let eof =
@@ -58,9 +58,7 @@
 	[] -> ()
 	| e::l -> print_exp e ; print_endline " " ; print_exp_list l
 
-	let h = Hashtbl.create 15
-	let t = Hashtbl.create 15	 
-	
+	 
    (** Top level reads input, parses, evaluates and prints the result. *)
    let main =
      print_endline startup ; 
@@ -75,9 +73,7 @@
 							print_list (List.rev clauseList);
 							let expList = Convert.convert_clauses_to_ExpressionList (List.rev clauseList) in
 							print_exp_list (expList);
-							print_string "---- STARTNIG THE CONJUNCTION PROCESS NOW ----\n\n";
-							let con_bdd = Manager.start_process (expList) (h)(t) in
-							Printf.printf "The final conjunction obdd: %s\n" (Syntax.print_bdd (con_bdd))
+							(*Manager.start		*)
            with
              Failure str -> print_endline ("QBF_Solver- Error: " ^ str)						
             | Parsing.Parse_error -> print_endline "QBF_Solver- Syntax error."

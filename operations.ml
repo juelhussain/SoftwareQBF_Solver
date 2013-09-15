@@ -1,6 +1,8 @@
-module Operations = struct
+(*module Operations = struct*)
 
-	
+		open Syntax
+		open Build
+		
 		(* Add expression to given hashtable in given index i *)
 		let add_to_ht (ht) (exp) (i: int) = Hashtbl.add ht i (exp)
 		
@@ -356,4 +358,4 @@ module Operations = struct
 		in forall' (vList) (nList) (eList) (List.length nList)								
 																		
 		
-end;;
+(*end;;*)

@@ -1,5 +1,5 @@
-module Build = 
-	struct
+(*module Build = 
+	struct*)
 	
 	open Syntax
 	
@@ -179,4 +179,4 @@ module Build =
       in build' exp 1
     	
 		
-end;;
+(*end;;*)

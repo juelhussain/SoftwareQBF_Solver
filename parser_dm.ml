@@ -10,9 +10,10 @@ open Parsing;;
 let _ = parse_error;;
 # 3 "parser_dm.mly"
 	
+	let parse_error msg = Printf.eprintf "%s\n" msg
 	
 	
-# 16 "parser_dm.ml"
+# 17 "parser_dm.ml"
 let yytransl_const = [|
     0 (* EOF *);
     0|]
@@ -139,68 +140,60 @@ let yyact = [|
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
     Obj.repr(
-# 19 "parser_dm.mly"
+# 20 "parser_dm.mly"
           (_1)
-# 145 "parser_dm.ml"
+# 146 "parser_dm.ml"
                : string list))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 23 "parser_dm.mly"
-              (_1)
-# 153 "parser_dm.ml"
-               : 'words))
-; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
-    Obj.repr(
 # 24 "parser_dm.mly"
-        ([])
-# 160 "parser_dm.ml"
+              (_1)
+# 154 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
 # 25 "parser_dm.mly"
-          ([_1])
-# 167 "parser_dm.ml"
+        ([])
+# 161 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
 # 26 "parser_dm.mly"
           ([_1])
-# 174 "parser_dm.ml"
+# 168 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
 # 27 "parser_dm.mly"
           ([_1])
-# 181 "parser_dm.ml"
+# 175 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
 # 28 "parser_dm.mly"
-         ([_1])
-# 188 "parser_dm.ml"
+          ([_1])
+# 182 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
-    let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
+    let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
 # 29 "parser_dm.mly"
-               (_2::_1)
-# 196 "parser_dm.ml"
+         ([_1])
+# 189 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
     let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
 # 30 "parser_dm.mly"
-                (_2::_1)
-# 204 "parser_dm.ml"
+               (_2::_1)
+# 197 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
@@ -208,7 +201,7 @@ let yyact = [|
     Obj.repr(
 # 31 "parser_dm.mly"
                 (_2::_1)
-# 212 "parser_dm.ml"
+# 205 "parser_dm.ml"
                : 'words))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
@@ -216,7 +209,15 @@ let yyact = [|
     Obj.repr(
 # 32 "parser_dm.mly"
                 (_2::_1)
-# 220 "parser_dm.ml"
+# 213 "parser_dm.ml"
+               : 'words))
+; (fun __caml_parser_env ->
+    let _1 = (Parsing.peek_val __caml_parser_env 1 : 'words) in
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
+    Obj.repr(
+# 33 "parser_dm.mly"
+                (_2::_1)
+# 221 "parser_dm.ml"
                : 'words))
 (* Entry main *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))
