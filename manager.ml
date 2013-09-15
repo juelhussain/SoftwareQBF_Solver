@@ -1,16 +1,37 @@
 module Manager = struct
 	
-	
+	open Build;;
+
 	(* 1/ This is the entry point to the full evaluation process *)
-	let start = ();;
+	let start expressionList (h) (t) = 
+		let rec build_exp exp_list bdd_list i =
+			if (i>(List.length expressionList)-1) then 
+				(*return the bdd list *)
+				bdd_list
+				(*check the expression is correct format*)
+			else
+				begin
+					let clause = (List.nth exp_list i) in 
+					if (check_clause exp) then 
+						begin
+							(*build the clause*)
+							let bdd = build_clause (clause) (h) (t) in 
+							build_exp exp_list (bdd::bdd_list) (i+1);
+						end
+					else (raise (Failure "The clause is not in correct format"))
+				end	
+			in build_exp expressionList [] 0;;
+	
+	
 	
 	(* 2/ This where the expression list will be afforded. *)
 	(* Followed by correct data representation for each clause. *)
-	let check_clause = ();;
+	let check_clause exp = true;;
 
 	(* 3/ For each of the clauses the build function will be run *)
 	(* with the OBDDs for each data stored in the Hashtable. *)
-	build_clauses = ();;
+	let build_clause clause (h) (t) = 
+		let bdd = build (clause) (h) (t) in bdd;;
 
 	(* 4/ For the clauses (now with OBDDs available) the conjunction *)
 	(* module will be run. *)
