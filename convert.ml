@@ -146,9 +146,12 @@ module Convert =
           and next = String.sub str (i+1) (String.length str - i - 1) in
           if (this = "") then 
 						cycle varslist next 
+					(*else if (this = "0") then 
+						cycle varslist next*) 
 					else cycle (this::varslist) next
       | None ->
 					if (str="") then List.rev varslist
+					else if (str="0") then List.rev varslist
 					else
           List.rev(str::varslist)
     in
@@ -184,9 +187,11 @@ module Convert =
 				begin
 				 let clause = (List.nth clauseList i) in 
 					if (clause.[0]='e') then
-						getClause (True::expressionList) (i+1)
+						getClause (Exists(clause, True)::expressionList) (i+1)
+					else if (clause.[0]='a') then
+						getClause (Forall(clause, True)::expressionList) (i+1)
 					else if (clause.[0]='p') then 
-						getClause (False::expressionList) (i+1)
+						getClause (expressionList) (i+1)
 					else 
 						begin
 						 getClause ((string_to_disjunction clause)::expressionList) (i+1)
