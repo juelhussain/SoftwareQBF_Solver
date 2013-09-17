@@ -59,7 +59,125 @@ let bdd2 = build (exp2) (h2) (t2);;
 let bdd22 = build (exp22) (h2) (t2);;
 
 let bdd_cn2 = conjunction ([bdd2;bdd22]) ([exp2;exp22]) (h2) (t2)
+(*Output: val bdd_cn2 : bdd =
+  Node (89,
+   Node (90,
+    Node (91, Node (93, Zero, Node (94, Node (95, Zero, One), One)),
+     Node (94, Node (95, Zero, One), One)),
+    Node (94, Node (95, Zero, One), One)),
+   Node (90, Node (91, Node (93, Zero, One), One), One))*)
+	
+(* Simple tests: Take single variables as expression and *)
+(* build conjunction between them*)
+	
+let h3 = Hashtbl.create 15;;
+let t3 = Hashtbl.create 15;;
+	
+let exp1 = Var "1";;
+let exp2 = Var "2";;
+let exp3 = Var "3";;
+let exp4 = Var "4";;
+let exp5 = Var "5";;
+let exp6 = Var "6";;
+let exp7 = Var "7";;
+let exp8 = Var "8";;
+let exp9 = Var "9";;
+let exp10 = Var "10";;
+	
+let bdd1 = build (exp1) (h3) (t3);;	
+let bdd2 = build (exp2) (h3) (t3);;	
+let bdd3 = build (exp3) (h3) (t3);;	
+let bdd4 = build (exp4) (h3) (t3);;	
+let bdd5 = build (exp5) (h3) (t3);;	
+let bdd6 = build (exp6) (h3) (t3);;	
+let bdd7 = build (exp7) (h3) (t3);;	
+let bdd8 = build (exp8) (h3) (t3);;	
+let bdd9 = build (exp9) (h3) (t3);;	
+let bdd10 = build (exp10) (h3) (t3);;	
 
+let bdd_cn10 = conjunction ([bdd1;bdd2;bdd3;bdd4;bdd5;bdd6;bdd7;bdd8;bdd9;bdd10]) 
+([exp1;exp2;exp3;exp4;exp5;exp6;exp7;exp8;exp9;exp10]) (h3) (t3)
+
+(*Output: val bdd_cn10 : bdd =
+  Node (1, Zero,
+   Node (2, Zero,
+    Node (3, Zero,
+     Node (4, Zero,
+      Node (5, Zero,
+       Node (6, Zero,
+        Node (7, Zero, Node (8, Zero, Node (9, Zero, Node (10, Zero, One))))))))))*)
+
+(*With empty lists: *)
+conjunction ([])([])(h3)(t3);;
+(*Output: Exception: Failure "List is empty".*)
+
+(*With single node: *)
+conjunction ([Node(1,Zero,One)])([Var "1"])(h3)(t3);;
+(*Output:
+Not enough elements. Node only: 
+ Node ( 1, Zero , One  ) 
+- : bdd = Node (1, Zero, One)*)
+
+(*Conjunction with unstaisfiable clauses: *)
+conjunction ([Node(1,Zero,One); Node(1,One,Zero)])([Var "1"; Neg(Var "1")])(h3)(t3);;
+(*Output: Zero*)
+
+(*Passing conjunction module without formula in CNF or DNF,*)
+(* Data that can not be processed.*)
+
+let h_bad = Hashtbl.create 15;;
+let t_bad = Hashtbl.create 15;;
+
+start_process([Imp(Var "3",And(True,False))]) (h_bad)(t_bad);;
+(*Output: Exception: Failure "The clause is not in correct format".*)
+
+
+start_process ([And(Var "1", Var "2"); Var "3"; 
+Or(Var "1", Or (Var "3", Var "5")); Exists("1",True)]) (h_bad) (t_bad);;
+
+start_process([Var "1";Var "2";Imp(Var "3",And(True,False))]) (h_bad)(t_bad);;
+(*Adding node
+Low:  Zero 
+High:  One 
+redundant test 2 - not adding node
+Low:  Zero 
+High:  One 
+Exception: Failure "The clause is not in correct format".*)
+
+
+
+(*e 1 2 3\\
+1 3 4\\
+2 5 7\\
+1 -5 -2\\*)
+
+let hashtable1 = Hashtbl.create 15;;
+let hashtable2 = Hashtbl.create 15;;
+
+let clauseList = ["e 1 2 3"; "1 3 4"; "2 5 7"; "1 -5 -2"]
+
+convert_clauses_to_ExpressionList
+let exp_list = convert_clauses_to_ExpressionList clauseList;;
+(*Output: val exp_list : expression list =
+  [Exists ("1 2 3", True); Or (Or (Var "1", Var "3"), Var "4");
+   Or (Or (Var "2", Var "5"), Var "7");
+   Or (Or (Var "1", Neg (Var "5")), Neg (Var "2"))]*)
+	
+print_exp_list (exp_list);;
+(*Output: exists 
+ 1 \/  3 \/  4 
+ 2 \/  5 \/  7 
+ 1 \/  ~  5 \/  ~  2 
+- : unit = ()*)
+
+let bdd1 = build (List.nth exp_list 1) (hashtable1) (hashtable2)
+(* Output: val bdd1 : bdd = Node (1, Node (3, Node (4, Zero, One), One), One) *)
+let bdd2 = build (List.nth exp_list 2) (hashtable1) (hashtable2)
+(* Output: val bdd2 : bdd = Node (2, Node (5, Node (7, Zero, One), One), One) *)
+let bdd3 = build (List.nth exp_list 3) (hashtable1) (hashtable2)
+(* Output: val bdd3 : bdd = Node (1, Node (2, One, Node (5, One, Zero)), One) *)
+
+conjunction ([bdd1;bdd2;bdd3]) ([exp1;exp2;exp3]) (hashtable1) (hashtable2)
 
 (* This gives a conjunction over bdds (nodes list) given. Takes global dag *)
 	(* as input which holds each nodes from nodes list as bdd and returns the  *)

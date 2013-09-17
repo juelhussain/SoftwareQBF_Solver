@@ -181,6 +181,7 @@
   					| Zero -> print_string "Zero\n"; 
   						disjunction' (drop nodesList m) (drop expList m) (m1 -1)
   					| _ -> let maxVar = select_max_var (nodesList) in
+						begin
 							let left = 
 								get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
 							let right = 
@@ -190,6 +191,7 @@
 							let k1 = disjunction' (left) (leftX) (List.length left) in
 							let k2 = disjunction' (right) (rightX) (List.length right) in
 							make (maxVar) (k1) (k2) (h) (t);
+						end
   				end
   		in cycleNodes (m1)
   	in disjunction' (nList) (eList) (List.length nList)
@@ -224,15 +226,17 @@
 						| One -> print_string "One\n";
 								conjunction' (drop nodesList m) (drop expList m) (m1 -1)
 						| _ -> let maxVar = select_max_var (nodesList) in
-								let left =
-									get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
-								let right =
-									get_low_high_list_Right (nodesList) (expList) (h) (t) (maxVar) in
-								let leftX = get_low_high_list_Vals_Left (expList) (maxVar) in
-								let rightX = get_low_high_list_Vals_Right (expList) (maxVar) in
-								let k1 = conjunction' (left) (leftX) (List.length left) in
-								let k2 = conjunction' (right) (rightX) (List.length right) in
-								make (maxVar) (k1) (k2) (h) (t);
+								begin
+  								let left =
+  									get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
+  								let right =
+  									get_low_high_list_Right (nodesList) (expList) (h) (t) (maxVar) in
+  								let leftX = get_low_high_list_Vals_Left (expList) (maxVar) in
+  								let rightX = get_low_high_list_Vals_Right (expList) (maxVar) in
+  								let k1 = conjunction' (left) (leftX) (List.length left) in
+  								let k2 = conjunction' (right) (rightX) (List.length right) in
+  								make (maxVar) (k1) (k2) (h) (t);
+								end
 					end
 			in cycleNodes (m1)
 		in conjunction' (nList) (eList) (List.length nList)

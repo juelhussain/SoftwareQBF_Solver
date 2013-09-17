@@ -1,7 +1,7 @@
 (*module Build = 
 	struct*)
 	
-	open Syntax
+	open Syntax;;
 	
 	
 	exception TerminalNode
@@ -33,8 +33,10 @@
 	(* completely reduced to true or false then the expression is returned *)
 	(* unaltered*)
 
- let rec eval (exp: expression) : expression = 
+ let rec eval (exp) = 
       match exp with
+				| Forall(_,y) -> eval y
+				| Exists (_,y) -> eval y 
         | True -> True
         | False -> False
         | Var i -> Var i
@@ -87,7 +89,8 @@
         | Or(x, y) -> var_bool v x || var_bool v y
         | BImp(x, y) -> var_bool v x || var_bool v y
         | Imp(x, y) -> var_bool v x || var_bool v y
-        | Neg x -> var_bool v x;;
+        | Neg x -> var_bool v x
+				| _ -> false;;
 
 	(* return an expression with the variable v replaced by assignment*)
     let rec var_lookup (v : expression) (e : expression) (asgmt : expression) 
@@ -95,6 +98,8 @@
       match e with
         | True -> True
         | False -> False
+				| Forall(_,x) -> var_lookup v x asgmt
+				| Exists (_,x) -> var_lookup v x asgmt
         | Var i -> let Var j = v in if j = i then asgmt else e
         | And(x, y) -> And (var_lookup v x asgmt, var_lookup v y asgmt)
         | Or(x, y) -> Or (var_lookup v x asgmt, var_lookup v y asgmt)
@@ -104,15 +109,29 @@
 
 
 
-	let rec print_exp (exp: expression) = match exp with 
+	let rec print_exp_asis (exp) = match exp with 
     | True -> print_string "True"
     | False -> print_string "False"
     | Var x -> Printf.printf "Var %s" x
-    | And(x,y) ->  print_string "And ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
-    | Or(x,y) ->  print_string "Or ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
-    | Imp(x,y) ->  print_string "Imp ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
-    | BImp(x,y) ->  print_string "BImp ("; print_exp x ;print_string " , "; print_exp y ;print_string ")"
-    | Neg(x) -> print_string "Neg ("; print_exp x; print_string ")"
+    | And(x,y) ->  print_string "And ("; print_exp_asis x ;print_string " , "; print_exp_asis y ;print_string ")"
+    | Or(x,y) ->  print_string "Or ("; print_exp_asis x ;print_string " , "; print_exp_asis y ;print_string ")"
+    | Imp(x,y) ->  print_string "Imp ("; print_exp_asis x ;print_string " , "; print_exp_asis y ;print_string ")"
+    | BImp(x,y) ->  print_string "BImp ("; print_exp_asis x ;print_string " , "; print_exp_asis y ;print_string ")"
+    | Neg(x) -> print_string "Neg ("; print_exp_asis x; print_string ")"
+		| Exists(_,_) -> print_string "exists"
+		| Forall(_,_) -> print_string "forall"
+
+	let rec print_exp (exp) = match exp with 
+    | True -> print_string "True"
+    | False -> print_string "False"
+    | Var x -> Printf.printf " %s" x
+    | And(x,y) ->  print_exp x ;print_string " /\\tes  "; print_exp y 
+    | Or(x,y) -> print_exp x ;print_string " \\/ "; print_exp y 
+    | Imp(x,y) ->  print_exp x ;print_string " -> "; print_exp y 
+    | BImp(x,y) ->   print_exp x ;print_string " <-> "; print_exp y 
+    | Neg(x) -> print_string " ~ "; print_exp x
+		| Exists(_,_) -> print_string "exists"
+		| Forall(_,_) -> print_string "forall"
 
 	let rec print_bdd (a: bdd) = match a with 
 		| Zero ->  " Zero "

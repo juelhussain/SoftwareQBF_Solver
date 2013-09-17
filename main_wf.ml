@@ -2,6 +2,7 @@
    
 	
 		open Syntax;;
+		open Build;;
 		open Convert;;
 		open Manager;;
 
@@ -52,14 +53,16 @@
 
 	let rec print_list = function 
 	[] -> ()
-	| e::l -> print_string e ; print_endline " " ; print_list l
+	| e::l -> print_string e ; print_endline " " ; print_list l;;
 
 	let rec print_exp_list = function 
 	[] -> ()
-	| e::l -> print_exp e ; print_endline " " ; print_exp_list l
+	| e::l -> print_exp e ; print_endline " " ; print_exp_list l;;
 
-	let h = Hashtbl.create 15
-	let t = Hashtbl.create 15	 
+	let rec print_exp_list_asis = function 
+	[] -> ()
+	| e::l -> print_exp_asis e ; print_endline " " ; print_exp_list_asis l;;
+
 	
    (** Top level reads input, parses, evaluates and prints the result. *)
    let main =
@@ -69,12 +72,15 @@
          print_string "> ";	
          let str = read_line () in
            try
+							let h = Hashtbl.create 15 in
+							let t = Hashtbl.create 15 in
 							Printf.printf "Will run the Lexer with %s file\n" str;
 							let clauseList = run(open_in str) in
 							Printf.printf "There are %d clause in the given file\n" (List.length clauseList);
 							print_list (List.rev clauseList);
 							let expList = Convert.convert_clauses_to_ExpressionList (List.rev clauseList) in
 							print_exp_list (expList);
+							print_exp_list_asis (expList);
 							print_string "---- STARTNIG THE CONJUNCTION PROCESS NOW ----\n\n";
 							let con_bdd = Manager.start_process (expList) (h)(t) in
 							Printf.printf "The final conjunction obdd: %s\n" (Syntax.print_bdd (con_bdd))

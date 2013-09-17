@@ -2,7 +2,10 @@
 	
 	open Syntax;;
 	open Build;;
-	open Operations;;
+	(*open Operations;;*)
+	open Conjunction;;
+	
+	
 	
 	
 	(* 1a/ This will remove the quantifiers from the expression list and saved *)
@@ -31,7 +34,18 @@
 	
 	(* 2/ This where the expression list will be afforded. *)
 	(* Followed by correct data representation for each clause. *)
-	let check_clause exp = true;;
+	
+	let rec check_clause exp = match exp with 
+	| True -> true
+	| False -> true
+	| Var y -> true
+	| And(x,y) -> check_clause (x) & check_clause (y)
+	| Or(x,y) -> check_clause (x) & check_clause (y)
+	| Imp(_,_) -> false
+	| BImp(_,_) -> false
+	| Forall(_,_) -> false
+	| Exists (_,_) -> false
+	| _ -> false
 
 	(* 3/ For each of the clauses the build function will be run *)
 	(* with the OBDDs for each data stored in the Hashtable. *)
@@ -43,7 +57,7 @@
 	let conjunction_clauses expression_list bdd_list h t = 
 		Printf.printf "the size of expression list: %d \n obdd list: %d\n" 
 			(List.length expression_list) (List.length bdd_list);
-		let con_bdd = Operations.conjunction (bdd_list) (expression_list) (h) (t)
+		let con_bdd = conjunction (bdd_list) (expression_list) (h) (t)
 		in con_bdd;;
 	
 	(* 1/ This is the entry point to the full evaluation process *)
@@ -61,7 +75,7 @@
 				begin
 					(*check the expression is correct format*)
 					let clause = (List.nth exp_list i) in 
-					if (check_clause exp) then 
+					if (check_clause clause) then 
 						begin
 							(*build the clause*)
 							let bdd = build_clause (clause) (h) (t) in 
@@ -101,7 +115,7 @@
 			else
 				begin
 					let clause = (List.nth exp_list i) in 
-					if (check_clause exp) then 
+					if (check_clause clause) then 
 						begin
 							(*build the clause*)
 							let bdd = build_clause (clause) (h) (t) in 

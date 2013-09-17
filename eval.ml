@@ -1,6 +1,6 @@
 (** Evaluation of expressions, given as big step semantics. *)
-module Eval =
-	struct  
+(*module Eval =
+	struct  *)
   open Syntax
   
   (** [eval e] evaluates the expression [e] to an integer. It raises an
@@ -22,4 +22,4 @@ let rec eval fm =
 
 (*let rec eval fm = print_string fm;;*)
 
-end;;
+(*end;;*)

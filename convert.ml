@@ -1,7 +1,7 @@
 
-module Convert = 
-	struct
-	open Syntax
+(*module Convert = 
+	struct*)
+	open Syntax;;
   
   
   (*type expression =
@@ -140,24 +140,60 @@ module Convert =
  
   let split splitter str =
     let rec cycle varslist str =
-      match string_index str splitter with
+      match (string_index str splitter) with
       | Some i ->
-          let this = String.sub str 0 i
-          and next = String.sub str (i+1) (String.length str - i - 1) in
-          if (this = "") then 
-						cycle varslist next 
-					(*else if (this = "0") then 
-						cycle varslist next*) 
+          let this = 
+						String.sub str 0 i						 
+          and next = 
+						if (1<(String.length str)-i) then 
+						String.sub str (i+1) (String.length str - i - 1) 
+						else "" 
+							in
+					if (this = "") then cycle (varslist) next
 					else cycle (this::varslist) next
       | None ->
-					if (str="") then List.rev varslist
-					else if (str="0") then List.rev varslist
-					else
-          List.rev(str::varslist)
-    in
-    cycle [] str		
+				if (str="") then List.rev varslist
+				else begin
+				 let finalList =  ( 
+					if ((str.[0] = ' ')&&(String.length str>1))  
+							then 
+								begin
+									(String.sub str 1 (String.length str -1))::varslist 
+								end
+						else str::varslist
+						) 
+						in
+						List.rev finalList
+					end
+    in cycle [] str		
 			
 			
+	
+			
+	let split_and_concat splitter1 str1 = 
+		let itemsList = (split splitter1 str1) in
+		let rec concatList new_str i = 
+			if new_str = " " then concatList new_str (i+1)
+			else if (i>(List.length itemsList)-1) then 
+				new_str
+			else
+				begin
+					let item = List.nth itemsList i in
+						if (item = "0") then concatList (new_str) (i+1)
+						else
+						concatList (new_str^" "^item) (i+1)
+				end
+		in concatList (List.nth itemsList 0) 1
+				
+			
+			let get_var var = 
+				if ((int_of_string var) < 0 ) then 
+  				begin
+  					let newvar = (split_and_concat '-' var) in
+  					Neg(Var newvar)
+  				end
+				else 
+					(Var var) 
 			
 	let string_to_disjunction stringClause = 
 		let listVars = split ' ' stringClause in 
@@ -167,17 +203,28 @@ module Convert =
 			else if (i>(List.length lv)-2) then 
 				begin
 					let finalvar = (List.nth lv i) in
-					processListVars lv (i+1) (Or(exp, Var finalvar)) 
+					if ((int_of_string finalvar) < 0 ) then 
+						begin
+							let newfinalvar = (split_and_concat '-' finalvar) in
+							processListVars lv (i+1) (Or(exp, Neg(Var newfinalvar))) 
+						end
+						else processListVars lv (i+1) (Or(exp, Var finalvar)) 
 				end
 			else
 				begin
 					let var = (List.nth lv i) in
-					let exp2 = Or(Var var,exp) in
-					processListVars lv (i+1) (exp2) 
+					if ((int_of_string var) < 0 ) then 
+						begin
+							let newvar = (split_and_concat '-' var) in
+							processListVars lv (i+1) (Or(exp, Neg(Var newvar))) 
+						end
+						else 
+							processListVars lv (i+1) (Or(exp, Var var)) 
 				end
-		in processListVars listVars 1 (Var (List.nth listVars 0));;	
-			
-			
+		in processListVars listVars 1 (get_var(List.nth listVars 0));;	
+				
+				
+				
 	(* This will take a string list that has clauses and convert each clause *)
 	(* in to the expression representation and return an expression List*)
 	let convert_clauses_to_ExpressionList clauseList =
@@ -187,9 +234,9 @@ module Convert =
 				begin
 				 let clause = (List.nth clauseList i) in 
 					if (clause.[0]='e') then
-						getClause (Exists(clause, True)::expressionList) (i+1)
+						getClause (Exists((split_and_concat ('e') clause), True)::expressionList) (i+1)
 					else if (clause.[0]='a') then
-						getClause (Forall(clause, True)::expressionList) (i+1)
+						getClause (Forall((split_and_concat ('a') clause), True)::expressionList) (i+1)
 					else if (clause.[0]='p') then 
 						getClause (expressionList) (i+1)
 					else 
@@ -231,8 +278,26 @@ module Convert =
 						end
 				end
 			in getClause [] 0;;
+
+  let string_to_disjunctionOld2 stringClause = 
+  		let listVars = split ' ' stringClause in 
+  		let rec processListVars lv i exp=
+  			if (i>(List.length lv)-1) then 
+  				exp
+  			else if (i>(List.length lv)-2) then 
+  				begin
+  					let finalvar = (List.nth lv i) in
+  					processListVars lv (i+1) (Or(exp, Var finalvar)) 
+  				end
+  			else
+  				begin
+  					let var = (List.nth lv i) in
+  					let exp2 = Or(exp, Var var) in
+  					processListVars lv (i+1) (exp2) 
+  				end
+  		in processListVars listVars 1 (Var (List.nth listVars 0));;	
 					
-	end ;;
+(*	end ;;*)
 	
 	
 	
