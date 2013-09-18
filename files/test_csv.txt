@@ -1,5 +1,2275 @@
-Hello,my,name, is , what, my name 
-is who, my name is ,
-chicky0test,chicky,slim,shady
-p hello my friend
-yehboy
+
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 5
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 6
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 7
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 7
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 6
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 7
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 10
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+zero
+zero
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+redundant test 1 - not adding node
+Low:  Zero 
+High:  Zero 
+Max variable: 8
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+Max variable: 9
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable in expression not found.
+get_left_bdd: Variable found.
+get_left_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable in expression not found.
+get_right_bdd: Variable found.
+get_right_bdd: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable in expression not found.
+get_left_exp: Variable found.
+get_left_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable in expression not found.
+get_right_exp: Variable found.
+get_right_exp: Variable in expression not found.
+Max variable: 1

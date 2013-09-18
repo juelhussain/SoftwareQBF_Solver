@@ -128,7 +128,7 @@
     		if (i >= (List.length nodesList)) then begin 
     		let max = match element with	
     				| Node(x,_,_) -> if ((x < var_i) && not(x<0)) then x else var_i
-    				| _ -> if var_i > -1 then var_i else -1
+    				| _ -> if (var_i > 0) && (var_i != 99999) then var_i else raise (Failure "There are no max variables")
 						in Printf.printf "Max variable: %d\n" max ; max
     		 end 
     			else
@@ -170,49 +170,44 @@
 	(* global dag in modified form.                                            *)
 	let conjunction (nList) (eList) (h) (t) =
 		let rec conjunction' (nodesList) (expList) (m1) =
-			let rec cycleNodes m =
-				let element = (at m nodesList) in
-				if (m1 < 2) then
+			if (m1 < 2) then
 					begin
-						print_string
-							("Not enough elements. Node only: \n"^(print_bdd element)^"\n");
+						let element = (at m1 nodesList) in
+						print_string ("Not enough elements. Node only: \n"^(print_bdd element)^"\n");
 						element
-					end
-				else if (m >1) then
-					begin
-						match element with
-						| Zero -> Zero
-						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
-						| _ -> cycleNodes(m -1)
-					end
-				else
-					begin
-						match element with
-						| Zero -> Zero
-						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
-						| _ -> 
-							begin
-  							let maxVar = select_max_var (nodesList) in
-    							if (maxVar !=99999)	then
-    								begin
-      								let left =
-      									get_left_bdd (nodesList) (expList) (maxVar) (h) (t) in
-      								let right =
-      									get_right_bdd (nodesList) (expList) (maxVar) (h) (t) in
-      								let left_exp = get_left_exp (expList) (maxVar) in
-      								let right_exp = get_right_exp (expList) (maxVar) in
-      								let k1 = conjunction' (left) (left_exp) (List.length left) in
-      								let k2 = conjunction' (right) (right_exp) (List.length right) in
-      								make (maxVar) (k1) (k2) (h) (t)
-    								end
-    							else 
-										begin 
-											Printf.printf "CONJUNCTION: The Max Variable is: %d" maxVar;
-											raise (Failure "No more variables left")
-										end	 
-							end
-					end
-			in cycleNodes (m1)
+					end 
+			else 
+				begin
+    			let rec cycleNodes m =
+    				let element = (at m nodesList) in
+    				if (m >1) then
+    					begin
+    						match element with
+    						| Zero -> Zero
+    						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
+    						| _ -> cycleNodes(m -1)
+    					end
+    				else
+    					begin
+    						match element with
+    						| Zero -> Zero
+    						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
+    						| _ -> 
+    							begin
+      							let maxVar = select_max_var (nodesList) in
+    								let left_bdd =
+    									get_left_bdd (nodesList) (expList) (maxVar) (h) (t) in
+    								let right_bdd =
+    									get_right_bdd (nodesList) (expList) (maxVar) (h) (t) in
+    								let left_exp = get_left_exp (expList) (maxVar) in
+    								let right_exp = get_right_exp (expList) (maxVar) in
+    								let k1 = conjunction' (left_bdd) (left_exp) (List.length left_bdd) in
+    								let k2 = conjunction' (right_bdd) (right_exp) (List.length right_bdd) in
+    								make (maxVar) (k1) (k2) (h) (t)
+        					end
+    					end
+    			in cycleNodes (m1)
+  			end
 		in conjunction' (nList) (eList) (List.length nList)
 		
 	

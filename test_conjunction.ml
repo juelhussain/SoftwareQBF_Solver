@@ -177,36 +177,62 @@ let bdd2 = build (List.nth exp_list 2) (hashtable1) (hashtable2)
 let bdd3 = build (List.nth exp_list 3) (hashtable1) (hashtable2)
 (* Output: val bdd3 : bdd = Node (1, Node (2, One, Node (5, One, Zero)), One) *)
 
+let exp1 = (List.nth exp_list 1)
+let exp2 = (List.nth exp_list 2)
+let exp3 = (List.nth exp_list 3)
 
-let bdd11 = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) False)) (hashtable1) (hashtable2);;
+(*Running conjunction with the above expression and nodes list: PROBLEM*)
+conjunction ([bdd1;bdd2;bdd3]) ([exp1;exp2;exp3]) (hashtable1) (hashtable2);;
+(*Output: Node (1,
+ Node (2,
+  Node (3, Node (4, Zero, Node (5, Node (7, Zero, One), One)),
+   Node (5, Node (7, Zero, One), One)),
+  Node (3, Node (4, Zero, Node (5, One, Zero)), Node (5, One, Zero))),
+ Node (2, Node (5, Node (7, Zero, One), One), One))*)
+
+let bdd1l = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) False)) (hashtable1) (hashtable2);;
 (*Output: Node (3, Node (4, Zero, One), One)*)
-let exp11 = eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) False)
+let exp1l = eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) False)
 (*Output: Or (Or (False, Var "3"), Var "4")*)		
 																								
-let bdd33 = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) False)) (hashtable1) (hashtable2);;
+let bdd3l = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) False)) (hashtable1) (hashtable2);;
 (*Output: Node (2, One, Node (5, One, Zero))*)							
-let exp33 = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) False)
+let exp3l = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) False)
 (* Or (Or (False, Neg (Var "5")), Neg (Var "2")) *)
 
-	
+let left1_bdd = ([bdd1l;bdd2;bdd3l])
+let left1_exp = ([exp1l;exp2;exp3l])
+
 let bdd1r = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) True)) (hashtable1) (hashtable2);;
 (*Output: One*)
 let exp1r = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) True)
 (*Output: Or (Or (True, Var "3"), Var "4")*)																																																																																																										
 																																																																																																																																																																																																																																																																																																																								
-let bdd33r = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) True)) (hashtable1) (hashtable2);;
+let bdd3r = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) True)) (hashtable1) (hashtable2);;
 (*Output: One*)
-let exp33r = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) True)
+let exp3r = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) True)
 (* Or (Or (True, Neg (Var "5")), Neg (Var "2"))*)
+
+let right1_bdd = ([bdd1r;bdd2;bdd3r])
+let right1_exp = ([exp1r;exp2;exp3r])
+
+(*Will manually run conjunction with left and right to see if it works: *)
+let bdd_conjunct = make (1) (conjunction (left1_bdd) (left1_exp) (hashtable1) (hashtable2)) 
+(conjunction (right1_bdd) (right1_exp) (hashtable1) (hashtable2)) (hashtable1) (hashtable2)
+
+(*Output: Node (1,
+ Node (2, Zero,
+  Node (3, Node (4, Zero, Node (5, One, Zero)), Node (5, One, Zero))),
+ Node (2, Node (5, Node (7, Zero, One), One), One))*)
 
 
 (*The first recursive call to conjunction*)
 
-let left_list_nodes = [bdd11;bdd2;bdd33];;
-let right_list_nodes = [bdd1r; bdd2; bdd33r];;
+let left_list_nodes = [bdd1l;bdd2;bdd3l];;
+let right_list_nodes = [bdd1r; bdd2; bdd3r];;
 
-let left_list_exp = [exp11;(List.nth exp_list 2);exp33];;
-let right_list_exp = [exp1r;(List.nth exp_list 2);exp33r];;
+let left_list_exp = [exp1l;(List.nth exp_list 2);exp3l];;
+let right_list_exp = [exp1r;(List.nth exp_list 2);exp3r];;
 
 conjunction (left_list_nodes) (left_list_exp) (hashtable1) (hashtable2)
 (*Output: Node (2,
@@ -227,19 +253,19 @@ let rec2right = get_low_high_list_Right (right_list_nodes) (right_list_exp) (has
 
 	
 
-let bdd111 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)) (hashtable1) (hashtable2);;
+let bdd11l = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)) (hashtable1) (hashtable2);;
 (*Output: bdd =  bdd = Node (3, Node (4, Zero, One), One)*)
-let exp111 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)
+let exp11l = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)
 (*Output: expression = Or (Or (False, Var "3"), Var "4")*)		
 
-let bdd222 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 1) False)) (hashtable1) (hashtable2);;
+let bdd22 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 1) False)) (hashtable1) (hashtable2);;
 (*Output: bdd = Node (5, Node (7, Zero, One), One)*)
-let exp222 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 1) False)
+let exp22 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 1) False)
 (*Output: expression = expression = Or (Or (False, Var "5"), Var "7")*)	
 
-let bdd333 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) False)) (hashtable1) (hashtable2);;
+let bdd33l = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) False)) (hashtable1) (hashtable2);;
 (*Output: bdd = One*)
-let exp333 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) False)
+let exp33l = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) False)
 (*Output: expression = Or (Or (False, Neg (Var "5")), True)*)	
 
 
