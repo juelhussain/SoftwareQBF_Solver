@@ -67,7 +67,14 @@
 			if (i>(List.length expressionList)-1) then 
 				(*return the conjunction of obdd_list *)
 				begin
-				let conjunction_bdd = 
+					let bdd_list = List.rev bdd_list in
+				(*let conjunction_bdd = 
+					conjunction_clauses (exp_list) (bdd_list) (h) (t) in 
+					conjunction_bdd*)
+					Printf.printf "The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
+					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
+					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
+					let conjunction_bdd = 
 					conjunction_clauses (exp_list) (bdd_list) (h) (t) in 
 					conjunction_bdd
 				end
@@ -78,8 +85,7 @@
 					if (check_clause clause) then 
 						begin
 							(*build the clause*)
-							let bdd = build_clause (clause) (h) (t) in 
-							build_exp exp_list (bdd::bdd_list) (i+1);
+							build_exp exp_list ((build_clause (clause) (h) (t))::bdd_list) (i+1);
 						end
 					else (raise (Failure "The clause is not in correct format"))
 				end	

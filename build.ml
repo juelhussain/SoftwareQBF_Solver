@@ -138,6 +138,28 @@
 		| One ->  " One "
 		| Node(x,y,z) ->  " Node ( " ^ (string_of_int x) ^ "," ^ print_bdd y ^ "," ^ print_bdd z ^ " ) "
 	
+	let rec print_bdd2 (a: bdd) = match a with 
+		| Zero -> print_string " Zero "
+		| One ->  print_string " One "
+		| Node(x,y,z) ->  print_string (" Node ( " ^ (string_of_int x) ^ ","); print_bdd2 y;
+		print_string ","; print_bdd2 z; print_string " ) "
+	
+	let rec print_list = function 
+	[] -> ()
+	| e::l -> print_string e ; print_endline " " ; print_list l;;
+
+	let rec print_exp_list = function 
+	[] -> ()
+	| e::l -> print_exp e ; print_endline " " ; print_exp_list l;;
+
+	let rec print_exp_list_asis = function 
+	[] -> ()
+	| e::l -> print_exp_asis e ; print_endline " " ; print_exp_list_asis l;;
+	
+	let rec print_bdd_list = function 
+	[] -> ()
+	| e::l -> print_bdd2 e ; print_endline " " ; print_bdd_list l;;
+	
 	let createHT size = Hashtbl.create size;;
 	
 	let increment = let u = ref 1 in fun () -> incr u; !u;;
