@@ -156,7 +156,7 @@ let hashtable2 = Hashtbl.create 15;;
 
 let clauseList = ["e 1 2 3"; "1 3 4"; "2 5 7"; "1 -5 -2"]
 
-convert_clauses_to_ExpressionList
+
 let exp_list = convert_clauses_to_ExpressionList clauseList;;
 (*Output: val exp_list : expression list =
   [Exists ("1 2 3", True); Or (Or (Var "1", Var "3"), Var "4");
@@ -177,8 +177,113 @@ let bdd2 = build (List.nth exp_list 2) (hashtable1) (hashtable2)
 let bdd3 = build (List.nth exp_list 3) (hashtable1) (hashtable2)
 (* Output: val bdd3 : bdd = Node (1, Node (2, One, Node (5, One, Zero)), One) *)
 
-conjunction ([bdd1;bdd2;bdd3]) ([exp1;exp2;exp3]) (hashtable1) (hashtable2)
 
+let bdd11 = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) False)) (hashtable1) (hashtable2);;
+(*Output: Node (3, Node (4, Zero, One), One)*)
+let exp11 = eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) False)
+(*Output: Or (Or (False, Var "3"), Var "4")*)		
+																								
+let bdd33 = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) False)) (hashtable1) (hashtable2);;
+(*Output: Node (2, One, Node (5, One, Zero))*)							
+let exp33 = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) False)
+(* Or (Or (False, Neg (Var "5")), Neg (Var "2")) *)
+
+	
+let bdd1r = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) True)) (hashtable1) (hashtable2);;
+(*Output: One*)
+let exp1r = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 1) True)
+(*Output: Or (Or (True, Var "3"), Var "4")*)																																																																																																										
+																																																																																																																																																																																																																																																																																																																								
+let bdd33r = build (eval(var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) True)) (hashtable1) (hashtable2);;
+(*Output: One*)
+let exp33r = eval (var_lookup (Var (string_of_int 1)) (List.nth exp_list 3) True)
+(* Or (Or (True, Neg (Var "5")), Neg (Var "2"))*)
+
+
+(*The first recursive call to conjunction*)
+
+let left_list_nodes = [bdd11;bdd2;bdd33];;
+let right_list_nodes = [bdd1r; bdd2; bdd33r];;
+
+let left_list_exp = [exp11;(List.nth exp_list 2);exp33];;
+let right_list_exp = [exp1r;(List.nth exp_list 2);exp33r];;
+
+conjunction (left_list_nodes) (left_list_exp) (hashtable1) (hashtable2)
+(*Output: Node (2,
+ Node (3, Node (4, Zero, Node (5, Node (7, Zero, One), One)),
+  Node (5, Node (7, Zero, One), One)),
+ Node (3, Node (4, Zero, Node (5, One, Zero)), Node (5, One, Zero)))*)
+
+let max_var = select_max_var (left_list_nodes)
+let rec2 = get_low_high_list_Left (left_list_nodes) (left_list_exp) (hashtable1) (hashtable2) (max_var) (Hashtbl.create 15)
+
+(*val rec2 : bdd list =
+  [Node (3, Node (4, Zero, One), One); One;
+   Node (5, Node (7, Zero, One), One)]*)
+
+let bdd111 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)) (hashtable1) (hashtable2);;
+(*Output: bdd =  bdd = Node (3, Node (4, Zero, One), One)*)
+let exp111 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)
+(*Output: expression = Or (Or (False, Var "3"), Var "4")*)		
+
+let bdd222 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 1) False)) (hashtable1) (hashtable2);;
+(*Output: bdd = Node (5, Node (7, Zero, One), One)*)
+let exp222 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 1) False)
+(*Output: expression = expression = Or (Or (False, Var "5"), Var "7")*)	
+
+let bdd333 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) False)) (hashtable1) (hashtable2);;
+(*Output: bdd = One*)
+let exp333 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) False)
+(*Output: expression = Or (Or (False, Neg (Var "5")), True)*)	
+
+
+let rec2right = get_low_high_list_Right (right_list_nodes) (right_list_exp) (hashtable1) (hashtable2) (max_var) (Hashtbl.create 15)
+(*Output: val rec2right : bdd list = [One; One; One]*)
+
+let rec2exp = get_low_high_list_Vals_Left (left_list_exp) (max_var) (Hashtbl.create 15)
+(*Output: rec2exp : expression list =
+  [Or (Or (False, Var "3"), Var "4"); Or (Or (False, Neg (Var "5")), True);
+   Or (Or (False, Var "5"), Var "7")]*)
+	
+conjunction (rec2) (rec2exp) (hashtable1) (hashtable2)
+		(*Output: Node (3, Node (4, Zero, Node (5, Node (7, Zero, One), One)),
+ Node (5, Node (7, Zero, One), One))*)
+
+	let max_var2 = select_max_var (rec2);;	(*Output 3*)		
+	let rec3 = get_low_high_list_Left (rec2) (rec2exp) (hashtable1) (hashtable2) (max_var2) (Hashtbl.create 15)								
+		(*Output: bdd list =
+  [Node (4, Zero, One); Node (5, Node (7, Zero, One), One); One]*)	
+	let rec3exp = get_low_high_list_Vals_Left (left_list_exp) (max_var) (Hashtbl.create 15)
+	(*rec3exp : expression list =
+  [Or (False, Var "4"); Or (Or (False, Var "5"), Var "7");
+   Or (Or (False, Neg (Var "5")), True)]*)
+	
+	let rec3right = get_low_high_list_Right (rec2right) (rec3exp) (hashtable1) (hashtable2) (max_var2) (Hashtbl.create 15)
+(*Output: val rec3right : bdd list = [One; One; One]*)
+	
+	conjunction (rec3) (rec3exp) (hashtable1) (hashtable2)
+	
+	
+	let max_var3 = select_max_var (rec3);;		(*Output: 4*)	
+	let rec4 = get_low_high_list_Left (rec3) (rec3exp) (hashtable1) (hashtable2) (max_var3) (Hashtbl.create 15);;								
+		(*Output:bdd list = [Zero; One; Node (5, Node (7, Zero, One), One)]*)														
+	let rec4exp = get_low_high_list_Vals_Left (rec3exp) (max_var3) (Hashtbl.create 15);;
+		(*rec4exp : expression list =
+  [False; Or (Or (False, Neg (Var "5")), True);
+   Or (Or (False, Var "5"), Var "7")]*)
+	
+	let max_var4 = select_max_var (rec4);; (*Output: 5*)
+	let rec5 = get_low_high_list_Left (rec4) (rec4exp) (hashtable1) (hashtable2) (max_var4) (Hashtbl.create 15)
+	(*Output: bdd list = [Zero; Node (7, Zero, One); One]*)
+	let rec5exp = get_low_high_list_Vals_Left (rec4exp) (max_var4) (Hashtbl.create 15);;
+	(*[False; Or (False, Var "7"); Or (Or (False, True), True)]*)
+
+	let max_var5 = select_max_var (rec5);; (*Output: 7*)
+	let rec6 = get_low_high_list_Left (rec5) (rec5exp) (hashtable1) (hashtable2) (max_var5) (Hashtbl.create 15)
+	(*Output: val rec6 : bdd list = [Zero; One; Zero]*)
+	let rec6exp = get_low_high_list_Vals_Left (rec5exp) (max_var5) (Hashtbl.create 15);;
+	(*Output: expression list = [False; Or (Or (False, True), True); False]*)
+	
 (* This gives a conjunction over bdds (nodes list) given. Takes global dag *)
 	(* as input which holds each nodes from nodes list as bdd and returns the  *)
 	(* global dag in modified form.                                            *)
