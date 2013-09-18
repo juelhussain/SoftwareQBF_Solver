@@ -214,12 +214,18 @@ conjunction (left_list_nodes) (left_list_exp) (hashtable1) (hashtable2)
   Node (5, Node (7, Zero, One), One)),
  Node (3, Node (4, Zero, Node (5, One, Zero)), Node (5, One, Zero)))*)
 
-let max_var = select_max_var (left_list_nodes)
-let rec2 = get_low_high_list_Left (left_list_nodes) (left_list_exp) (hashtable1) (hashtable2) (max_var) (Hashtbl.create 15)
+let lh_ht = Hashtbl.create 15;;
 
-(*val rec2 : bdd list =
+let max_var = select_max_var (left_list_nodes);;
+let rec2 = get_low_high_list_Left (left_list_nodes) (left_list_exp) (hashtable1) (hashtable2) (max_var) (lh_ht)
+(*Output: val rec2 : bdd list =
   [Node (3, Node (4, Zero, One), One); One;
    Node (5, Node (7, Zero, One), One)]*)
+	
+let rec2right = get_low_high_list_Right (right_list_nodes) (right_list_exp) (hashtable1) (hashtable2) (max_var) (lh_ht)
+(*Output: val rec2right : bdd list = [One; One; One]*)
+
+	
 
 let bdd111 = build (eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 0) False)) (hashtable1) (hashtable2);;
 (*Output: bdd =  bdd = Node (3, Node (4, Zero, One), One)*)
@@ -237,8 +243,6 @@ let exp333 = eval(var_lookup (Var (string_of_int 2)) (List.nth left_list_exp 2) 
 (*Output: expression = Or (Or (False, Neg (Var "5")), True)*)	
 
 
-let rec2right = get_low_high_list_Right (right_list_nodes) (right_list_exp) (hashtable1) (hashtable2) (max_var) (Hashtbl.create 15)
-(*Output: val rec2right : bdd list = [One; One; One]*)
 
 let rec2exp = get_low_high_list_Vals_Left (left_list_exp) (max_var) (Hashtbl.create 15)
 (*Output: rec2exp : expression list =

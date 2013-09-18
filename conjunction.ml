@@ -49,16 +49,12 @@
 		(* returns a list of expressions by assigning low high evaluations, given*)
 		(* variable i. For left/right option case false/true evaluations are given. *)
 		let get_low_high_Vals (expList) (i) (hashtbl2) (leftOrRight: int)= 
-    	(*for j=1 to List.length y do*)
+    	if (leftOrRight=2) then right_ht(hashtbl2)
+			else ( 
 			Hashtbl.clear hashtbl2;
     	let rec cycleNodes (j) =
     			if (j>(List.length expList)) then
-    				begin
-    					if leftOrRight = 1 then				
-    						left_ht(hashtbl2)
-    						else 
-    						right_ht(hashtbl2)
-    				end 				
+    						left_ht(hashtbl2)				
     			else 
     			(*is element labelled by max variable*)
     			let elementX = (at j expList) in
@@ -77,43 +73,43 @@
       				end
     			end
     in cycleNodes (1)
+		)
 		
 		(* Returns a list of Nodes with new bdd list eval either neg or pos: *)
 		(* dependent on left or right *)
     let get_low_high_BDD (nodesList) (expList) (i) (hashtbl3) (h) (t) (leftOrRight: int) = 
     	(*for j=1 to List.length y do*)
-    	Hashtbl.clear hashtbl3;
-			let rec cycleNodes (j) =
-    			if (j>(List.length nodesList)) then
-    				begin
-    					print_string "glh BDD:j more than list length\n";
-    					if leftOrRight = 1 then				
-    						left_ht(hashtbl3)
-    					else 
-    						right_ht(hashtbl3)
-    				end 				
-    			else 
-    			begin
-    			(*is element labelled by max variable*)
-    			let elementX = (at j expList) in
-    			if (var_bool (Var (string_of_int i)) elementX) then	
-    				(
-    					print_string ("glh BDD: Variable found.\n");
-    					add_to_ht (hashtbl3) 
-							((build (eval(var_lookup (Var (string_of_int i)) 
-								elementX False)) (h) (t) ),
-								(build(eval (var_lookup (Var (string_of_int i)) 
-									elementX True)) (h) (t))) (j);
-    					cycleNodes (j+1) 
-    				)
-    			else
-    				begin
-      				print_string ("glh BDD: Variable in expression not found.\n");
-      				add_to_ht (hashtbl3) ((at j nodesList),(at j nodesList)) (j);
-      				cycleNodes (j+1)
-    				end
-    			end
-    in cycleNodes (1)
+			if (leftOrRight=2) then right_ht(hashtbl3) 
+			else
+				begin
+        	Hashtbl.clear hashtbl3;
+    			let rec cycleNodes (j) =
+        			if (j>(List.length nodesList)) then left_ht(hashtbl3)
+        			else
+								begin 
+  								(*is element labelled by max variable*)
+          				let elementX = (at j expList) in
+              			begin
+              			if (var_bool (Var (string_of_int i)) elementX) then	
+              				(
+              					print_string ("glh BDD: Variable found.\n");
+              					add_to_ht (hashtbl3) 
+          							((build (eval(var_lookup (Var (string_of_int i)) 
+          								elementX False)) (h) (t) ),
+          								(build(eval (var_lookup (Var (string_of_int i)) 
+          									elementX True)) (h) (t))) (j);
+              					cycleNodes (j+1) 
+              				)
+              			else
+              				(
+                				print_string ("glh BDD: Variable in expression not found.\n");
+                				add_to_ht (hashtbl3) ((at j nodesList),(at j nodesList)) (j);
+                				cycleNodes (j+1)
+              				)
+              			end
+									end
+       		in cycleNodes (1)
+				end
 					
 					
 		let get_low_high_list_Left (nList1) (eList1) (h) (t) (maxVariable1: int) (temp_ht1) = 
