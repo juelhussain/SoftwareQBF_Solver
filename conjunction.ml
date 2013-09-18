@@ -176,6 +176,8 @@
 						print_string ("Not enough elements. Node only: \n"^(print_bdd element)^"\n");
 						element
 					end 
+			else if((List.length nodesList) != (List.length expList)) then 
+				raise (Failure "The expression list and nodes list does not match")
 			else 
 				begin
     			let rec cycleNodes m =
