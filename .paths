@@ -41,3 +41,4 @@ tools/pycaml
 tools/qbf2epr-bin
 tools/qbf2epr-bin/service
 files
+exec

@@ -27,103 +27,115 @@ module Disjunction =
         | [] -> raise (Failure "List is empty")
         | h :: t -> if k = 1 then h else at (k-1) t
 		
-		(* returns a list of expressions by assigning low high evaluations, given*)
-		(* variable i. For left/right option case false/true evaluations are given. *)
-		let get_low_high_Vals (expList) (i) (hashtbl2) (leftOrRight: int)= 
-    	(*for j=1 to List.length y do*)
-    	let rec cycleNodes (j) =
-    			if (j>(List.length expList)) then
-    				begin
-    					if leftOrRight = 1 then				
-    						left_ht(hashtbl2)
-    						else 
-    						right_ht(hashtbl2)
-    				end 				
-    			else 
+		let get_left_exp (expList) (i) = 
+    	let rec left newlist j =
+    		if (j>(List.length expList)) then (List.rev newlist)
+    		else 
     			begin
-    			(*is element labelled by max variable*)
-    			let elementX = (at j expList) in
-    			if (var_bool (Var (string_of_int i)) elementX) then	
-    				(
-    					print_string ("Variable found.\n");
-    					add_to_ht (hashtbl2) ((eval(var_lookup (Var (string_of_int i)) elementX False)),(eval (var_lookup (Var (string_of_int i)) elementX True))) (j);
-    					cycleNodes (j+1) 
-    				)
-    			else
-    				begin
-    				print_string ("Variable in expression not found.\n");
-    				add_to_ht (hashtbl2) (elementX,elementX) (j);
-    				cycleNodes (j+1)
-    				end
+    				let element_exp = (at j expList) in
+    					begin
+          			if (var_bool (Var (string_of_int i)) element_exp) then	
+          				begin
+          					print_string ("get_left_exp: Variable found.\n");
+    								left ((eval(var_lookup (Var (string_of_int i)) element_exp False))::newlist) (j+1)
+          				end
+          			else
+          				begin
+            				print_string ("get_left_exp: Variable in expression not found.\n");
+            				left (element_exp::newlist) (j+1)
+          				end
+        			end
     			end
-    in cycleNodes (1)
+    	in left [] 1 ;;
+    
+    let get_right_exp (expList) (i) = 
+    	let rec left newlist j =
+    		if (j>(List.length expList)) then (List.rev newlist)
+    		else 
+    			begin
+    				let element_exp = (at j expList) in
+    					begin
+          			if (var_bool (Var (string_of_int i)) element_exp) then	
+          				begin
+          					print_string ("get_right_exp: Variable found.\n");
+    								left ((eval(var_lookup (Var (string_of_int i)) element_exp True))::newlist) (j+1)
+          				end
+          			else
+          				begin
+            				print_string ("get_right_exp: Variable in expression not found.\n");
+            				left (element_exp::newlist) (j+1)
+          				end
+        			end
+    			end
+    	in left [] 1 ;;
+    
+    
+    
+    let get_left_bdd (nodesList) (expList) (i) (h) (t) = 
+    	let rec left newlist j =
+    		if (j>(List.length expList)) then (List.rev newlist)
+    		else 
+    			begin
+    				let element_exp = (at j expList) in
+    					begin
+          			if (var_bool (Var (string_of_int i)) element_exp) then	
+          				begin
+          					print_string ("get_left_bdd: Variable found.\n");
+    								 left ((build(eval(var_lookup (Var (string_of_int i)) element_exp False)) (h) (t) )::newlist) (j+1)
+          				end
+          			else
+          				begin
+            				print_string ("get_left_bdd: Variable in expression not found.\n");
+            				left ((at j nodesList)::newlist) (j+1)
+          				end
+        			end
+    			end
+    	in left [] 1 ;;
+    
+    let get_right_bdd (nodesList) (expList) (i) (h) (t) = 
+    	let rec left newlist j =
+    		if (j>(List.length expList)) then (List.rev newlist)
+    		else 
+    			begin
+    				let element_exp = (at j expList) in
+    					begin
+          			if (var_bool (Var (string_of_int i)) element_exp) then	
+          				begin
+          					print_string ("get_right_bdd: Variable found.\n");
+    								 left ((build(eval(var_lookup (Var (string_of_int i)) element_exp True)) (h) (t) )::newlist) (j+1)
+          				end
+          			else
+          				begin
+            				print_string ("get_right_bdd: Variable in expression not found.\n");
+            				left ((at j nodesList)::newlist) (j+1)
+          				end
+        			end
+    			end
+    	in left [] 1 ;;
 		
-		(* Returns a list of Nodes with new bdd list eval either neg or pos: *)
-		(* dependent on left or right *)
-    let get_low_high_BDD (nodesList) (expList) (i) (hashtbl3) (h) (t) (leftOrRight: int) = 
-    	(*for j=1 to List.length y do*)
-    	let rec cycleNodes (j) =
-    			if (j>(List.length nodesList)) then
-    				begin
-    					print_string "j more than list length\n";
-    					if leftOrRight = 1 then				
-    						left_ht(hashtbl3)
-    					else 
-    						right_ht(hashtbl3)
-    				end 				
-    			else 
-    			begin
-    			(*is element labelled by max variable*)
-    			let elementX = (at j expList) in
-    			if (var_bool (Var (string_of_int i)) elementX) then	
-    				(
-    					print_string ("Variable found.\n");
-    					add_to_ht (hashtbl3) ((build (eval(var_lookup (Var (string_of_int i)) elementX False)) (h) (t) ),(build(eval (var_lookup (Var (string_of_int i)) elementX True)) (h) (t))) (j);
-    					cycleNodes (j+1) 
-    				)
-    			else
-    				begin
-    				print_string ("Variable in expression not found.\n");
-    				add_to_ht (hashtbl3) ((at j nodesList),(at j nodesList)) (j);
-    				cycleNodes (j+1)
-    				end
-    			end
-    in cycleNodes (1)
-					
-					
-		let get_low_high_list_Left (nList) (eList) (h) (t) (maxVariable: int) = 
-    	get_low_high_BDD (nList) (eList) (maxVariable) (createHT 15) (h) (t) (1)
-    
-    let get_low_high_list_Right (nList) (eList) (h) (t) (maxVariable: int) = 
-    	get_low_high_BDD (nList) (eList) (maxVariable) (createHT 15) (h) (t) (2) 
-    
-    let get_low_high_list_Vals_Left (eList) (maxVariable: int) = 
-    	get_low_high_Vals (eList) (maxVariable) (createHT 15) (1)
-    
-    let get_low_high_list_Vals_Right (eList) (maxVariable: int) = 
-    	get_low_high_Vals (eList) (maxVariable) (createHT 15) (2)		
+		
+		
 			
 		(* selects max variable in nodeslist. Lower value takes presedence.*)
 		(* Also only first node is checked. Nested nodes are ignored - *)
 		(* may have to revise *)
 		let select_max_var (nodesList) =
     	let rec iter element i var_i= 
-    		if (i = List.length nodesList) then begin Printf.printf "1 Value i: %d var_i: %d \n" i var_i ;
-    		match element with	
+    		if (i >= (List.length nodesList)) then begin 
+    		let max = match element with	
     				| Node(x,_,_) -> if ((x < var_i) && not(x<0)) then x else var_i
-    				| _ -> if var_i > -1 then var_i else -1
+    				| _ -> if (var_i > 0) && (var_i != 99999) then var_i else raise (Failure "There are no max variables")
+						in Printf.printf "Max variable: %d\n" max ; max
     		 end 
     			else
     				match element with	
     				| Node(x,_,_) -> 
     					if ((x < var_i) && not(x<0)) then 
     						begin
-      						Printf.printf "2 Value i: %d var_i: %d \n" i var_i;
       						(iter (at (i+1) nodesList) (i+1) (x)) 
     						end
     					else 
     						begin 
-      						Printf.printf "3 Value i: %d var_i: %d \n" i var_i;
       						(iter (at (i+1) nodesList) (i+1) (var_i)) 
     						end
     				| _ -> iter (at (i+1) nodesList) (i+1) var_i
@@ -152,44 +164,51 @@ module Disjunction =
   (* This gives a disjunction over bdds (nodes list) given. Takes global *)
   (* dag as input which holds each nodes from nodes list as bdd and      *)
   (* returns the global dag in modified form.                            *)
-  let disjunction (nList) (eList) (h) (t) =
-  	let rec disjunction' (nodesList) (expList) (m1) =
-  		Printf.printf "Recursion m = %d\n" m1;
-  		let rec cycleNodes m =
-  			Printf.printf "CycleNode m = %d\n" m;
-  			let element = (at m nodesList) in
-  			if (m1 < 2) then
-  				begin
-  					print_string 
-						("Not enough elements. Node only: \n"^(print_bdd element)^"\n"); 
-  					element
-  				end
-  			else if (m >1) then
-  				begin
-  					match element with
-  					| One -> print_string "One\n"; One
-  					| Zero -> print_string "Zero\n"; 
-  						disjunction' (drop nodesList m) (drop expList m) (m1 -1)
-  					| _ -> cycleNodes(m -1)
-  				end
-  			else
-  				begin
-  					match element with
-  					| One -> print_string "One\n"; One
-  					| Zero -> print_string "Zero\n"; 
-  						disjunction' (drop nodesList m) (drop expList m) (m1 -1)
-  					| _ -> let maxVar = select_max_var (nodesList) in
-							let left = 
-								get_low_high_list_Left (nodesList) (expList) (h) (t) (maxVar) in
-							let right = 
-								get_low_high_list_Right (nodesList) (expList) (h) (t) (maxVar) in
-							let leftX = get_low_high_list_Vals_Left (expList) (maxVar) in
-							let rightX = get_low_high_list_Vals_Right (expList) (maxVar) in
-							let k1 = disjunction' (left) (leftX) (List.length left) in
-							let k2 = disjunction' (right) (rightX) (List.length right) in
-							make (maxVar) (k1) (k2) (h) (t);
-  				end
-  		in cycleNodes (m1)
-  	in disjunction' (nList) (eList) (List.length nList)
+  (* This gives a conjunction over bdds (nodes list) given. Takes global dag *)
+	(* as input which holds each nodes from nodes list as bdd and returns the  *)
+	(* global dag in modified form.                                            *)
+	let disjunction (nList) (eList) (h) (t) =
+		let rec disjunction' (nodesList) (expList) (m1) =
+			if (m1 < 2) then
+					begin
+						let element = (at m1 nodesList) in
+						print_string ("Not enough elements. Node only: \n"^(print_bdd element)^"\n");
+						element
+					end 
+			else if((List.length nodesList) != (List.length expList)) then 
+				raise (Failure "The expression list and nodes list does not match")
+			else 
+				begin
+    			let rec cycleNodes m =
+    				let element = (at m nodesList) in
+    				if (m >1) then
+    					begin
+    						match element with
+    						| One -> One
+    						| Zero -> disjunction' (drop nodesList m) (drop expList m) (m1 -1)
+    						| _ -> cycleNodes(m -1)
+    					end
+    				else
+    					begin
+    						match element with
+    						| One -> One
+    						| Zero -> disjunction' (drop nodesList m) (drop expList m) (m1 -1)
+    						| _ -> 
+    							begin
+      							let maxVar = select_max_var (nodesList) in
+    								let left_bdd =
+    									get_left_bdd (nodesList) (expList) (maxVar) (h) (t) in
+    								let right_bdd =
+    									get_right_bdd (nodesList) (expList) (maxVar) (h) (t) in
+    								let left_exp = get_left_exp (expList) (maxVar) in
+    								let right_exp = get_right_exp (expList) (maxVar) in
+    								let k1 = disjunction' (left_bdd) (left_exp) (List.length left_bdd) in
+    								let k2 = disjunction' (right_bdd) (right_exp) (List.length right_bdd) in
+    								make (maxVar) (k1) (k2) (h) (t)
+        					end
+    					end
+    			in cycleNodes (m1)
+  			end
+		in disjunction' (nList) (eList) (List.length nList)
 						
 	end;;

@@ -4,34 +4,6 @@
 	open Syntax;;
   
   
-  (*type expression =
-        | False
-        | True
-        | Var of int
-        | And of expression * expression (* && *)
-        | Or of expression * expression (* || *)
-        | Imp of expression * expression (* ->, implication *)
-        | BImp of expression * expression (* <->, bi-implication *)
-        | Neg of expression (* -, negation *)
-  			| Forall of string * expression
-        | Exists of string * expression
-  
-  
-  let rec formula_to_expression fm =
-    match fm with
-      False -> False
-    | True -> True
-  	| Var(p) -> Var(int_of_string p)
-    | Neg(p) -> Neg(convert_var_int p)
-    | And(p,q) -> And(convert_var_int p,convert_var_int q)
-    | Or(p,q) -> Or(convert_var_int p, convert_var_int q)
-    | Imp(p,q) -> Imp(convert_var_int p, convert_var_int q)
-    | BImp(p,q) -> BImp(convert_var_int p, convert_var_int q)
-  	| Forall(p,q) -> Forall(convert_var_int p, convert_var_int q)
-  	| Exists(p,q) -> Exists(convert_var_int p, convert_var_int q)*)
-  
-  
-  
   	
   	(* Thers natural ordering on strings that can be utilised for *)
   	(* Variable renaming. To introduce order. So "b">"a"=true similarly *)

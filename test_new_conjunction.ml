@@ -19,7 +19,7 @@ begin
 							
 							
 		let rec conjunctionTest nodesList expList h t m=
-			if (m<1) then begin print_string "less than one\n"; (List.nth nodesList 0) end
+			if (m<2) then begin print_string "less than one\n"; (List.nth nodesList 0) end
 			else
 			begin
 				let element = (at m nodesList) in
