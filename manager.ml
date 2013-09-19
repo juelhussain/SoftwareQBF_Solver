@@ -3,6 +3,7 @@
 	open Syntax;;
 	open Build;;
 	(*open Operations;;*)
+	open Print;;
 	open Conjunction;;
 	
 	
@@ -45,7 +46,7 @@
 	| BImp(_,_) -> false
 	| Forall(_,_) -> false
 	| Exists (_,_) -> false
-	| _ -> false
+	| Neg (x) -> check_clause (x)
 
 	(* 3/ For each of the clauses the build function will be run *)
 	(* with the OBDDs for each data stored in the Hashtable. *)
@@ -84,40 +85,11 @@
 							(*build the clause*)
 							build_exp exp_list ((build_clause (clause) (h) (t))::bdd_list) (i+1);
 						end
-					else (raise (Failure "The clause is not in correct format"))
+					else (raise (Failure ("The clause is not in correct format: "^(get_print_exp_asis clause))))
 				end	
 		in build_exp expressionList [] 0;;
 		
-		(*This is to be called for conjunction bdd with segmentation for optimisation*)
-		let start_process_segmentation expressionList (h) (t) (seg_val) = 
-		let expressionList = remove_quants (expressionList) in
-		let rec build_exp exp_list bdd_list i =
-			if (i>(List.length expressionList)-1) then 
-				(*return the conjunction of obdd_list *)
-				begin
-					let bdd_list = List.rev bdd_list in
-					Printf.printf "The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
-					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
-					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
-					let conjunction_bdd_list = 
-					segment_conjunction (exp_list) (bdd_list) (h) (t) (seg_val) in 
-					conjunction_bdd_list
-				end
-			else
-				begin
-					(*check the expression is correct format*)
-					let clause = (List.nth exp_list i) in 
-					if (check_clause clause) then 
-						begin
-							(*build the clause*)
-							build_exp exp_list ((build_clause (clause) (h) (t))::bdd_list) (i+1);
-						end
-					else (raise (Failure "The clause is not in correct format"))
-				end	
-		in build_exp expressionList [] 0;;
-	
-	
-	(* This is the part of the conjunction process that will use segmentation.*)
+		(* This is the part of the conjunction process that will use segmentation.*)
 	(* First the size of the nodes list is checked and that will be devided by a *)
 	(* given value. At each break point the conjunction process will be run and *)
 	(* the conjunction_bdd for each run will be provided in a list form where*)
@@ -179,6 +151,39 @@
 						)
 				end
 			in segment (expression_list) (obdd_list) [] 0 ;;
+		
+		
+		
+		(*This is to be called for conjunction bdd with segmentation for optimisation*)
+		let start_process_segmentation expressionList (h) (t) (seg_val) = 
+		let expressionList = remove_quants (expressionList) in
+		let rec build_exp exp_list bdd_list i =
+			if (i>(List.length expressionList)-1) then 
+				(*return the conjunction of obdd_list *)
+				begin
+					let bdd_list = List.rev bdd_list in
+					Printf.printf "The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
+					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
+					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
+					let conjunction_bdd_list = 
+					segment_conjunction (exp_list) (bdd_list) (h) (t) (seg_val) in 
+					conjunction_bdd_list
+				end
+			else
+				begin
+					(*check the expression is correct format*)
+					let clause = (List.nth exp_list i) in 
+					if (check_clause clause) then 
+						begin
+							(*build the clause*)
+							build_exp exp_list ((build_clause (clause) (h) (t))::bdd_list) (i+1);
+						end
+					else (raise (Failure "The clause is not in correct format"))
+				end	
+		in build_exp expressionList [] 0;;
+	
+	
+	
 	
 	
 	(* 5/ Take the conjunction obdd and present the printout of the OBDD. *)

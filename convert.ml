@@ -175,7 +175,11 @@
 			else if (i>(List.length lv)-2) then 
 				begin
 					let finalvar = (List.nth lv i) in
-					if ((int_of_string finalvar) < 0 ) then 
+					if ((int_of_string finalvar) = 0 ) then 
+						begin
+							processListVars lv (i+1) (exp) 
+						end
+					else if ((int_of_string finalvar) < 0 ) then 
 						begin
 							let newfinalvar = (split_and_concat '-' finalvar) in
 							processListVars lv (i+1) (Or(exp, Neg(Var newfinalvar))) 
@@ -190,8 +194,9 @@
 							let newvar = (split_and_concat '-' var) in
 							processListVars lv (i+1) (Or(exp, Neg(Var newvar))) 
 						end
-						else 
-							processListVars lv (i+1) (Or(exp, Var var)) 
+						else if ((int_of_string var) = 0 ) then 
+							processListVars lv (i+1) (exp) 
+						else processListVars lv (i+1) (Or(exp, Var var)) 
 				end
 		in processListVars listVars 1 (get_var(List.nth listVars 0));;	
 				

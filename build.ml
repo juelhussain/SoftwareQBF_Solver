@@ -167,24 +167,24 @@
 	let make (i :int) (low : bdd) (high : bdd) (h) (t) : bdd=
       if low == high then 
 				begin 
-					print_string "redundant test 1 - not adding node\n"; 
+					(*print_string "redundant test 1 - not adding node\n"; 
 					print_string ("Low: "^print_bdd low^"\n");
-					print_string ("High: "^print_bdd high^"\n");
+					print_string ("High: "^print_bdd high^"\n");*)
 					low 
 				end
       else if Hashtbl.mem h (Node(i, low, high))
       then 
 				begin
-					print_string "redundant test 2 - not adding node\n";
+					(*print_string "redundant test 2 - not adding node\n";
 					print_string ("Low: "^print_bdd low^"\n");
-					print_string ("High: "^print_bdd high^"\n"); 
+					print_string ("High: "^print_bdd high^"\n"); *)
 					Node(i, low, high)
 				end
       else 
 				begin
-        print_string "Adding node\n";
+        (*print_string "Adding node\n";
 				print_string ("Low: "^print_bdd low^"\n");
-				print_string ("High: "^print_bdd high^"\n");
+				print_string ("High: "^print_bdd high^"\n");*)
 				let u = increment () in 
         let _ = Hashtbl.add h (Node(i, low, high)) u in
         let _ = Hashtbl.add t u (Node(i, low, high)) in

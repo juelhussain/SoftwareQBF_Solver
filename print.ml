@@ -1,4 +1,5 @@
-	
+
+	open Syntax	
 	
 	
 	let rec print_exp_asis (exp) = match exp with 
@@ -29,8 +30,8 @@
 	let rec print_bdd (a: bdd) = match a with 
 		| Zero -> print_string " Zero "
 		| One ->  print_string " One "
-		| Node(x,y,z) ->  print_string (" Node ( " ^ (string_of_int x) ^ ","); print_bdd2 y;
-		print_string ","; print_bdd2 z; print_string " ) "
+		| Node(x,y,z) ->  print_string (" Node ( " ^ (string_of_int x) ^ ","); print_bdd y;
+		print_string ","; print_bdd z; print_string " ) "
 	
 	let rec get_print_exp_asis (exp) = match exp with 
     | True ->  "True"
@@ -77,7 +78,7 @@
 	
 	let rec print_bdd_list = function 
 	[] -> ()
-	| e::l -> print_bdd2 e ; print_endline " " ; print_bdd_list l;;
+	| e::l -> print_bdd e ; print_endline " " ; print_bdd_list l;;
 
 
 	let rec get_print_exp_list = function 
