@@ -89,7 +89,7 @@
 		in build_exp expressionList [] 0;;
 		
 		(*This is to be called for conjunction bdd with segmentation for optimisation*)
-		let start_process_segmentation expressionList (h) (t) = 
+		let start_process_segmentation expressionList (h) (t) (seg_val) = 
 		let expressionList = remove_quants (expressionList) in
 		let rec build_exp exp_list bdd_list i =
 			if (i>(List.length expressionList)-1) then 
@@ -99,9 +99,9 @@
 					Printf.printf "The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
 					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
 					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
-					let conjunction_bdd = 
-					segment_conjunction (exp_list) (bdd_list) (h) (t) in 
-					conjunction_bdd
+					let conjunction_bdd_list = 
+					segment_conjunction (exp_list) (bdd_list) (h) (t) (seg_val) in 
+					conjunction_bdd_list
 				end
 			else
 				begin
@@ -123,32 +123,10 @@
 	(* the conjunction_bdd for each run will be provided in a list form where*)
 	(* the elements have implicit conjunction between them. *)
 	
-	let segment_conjunction (exppression_list) (bdd_list) (h) (t) (segment_val) = 
-		let rec segment (exp_list) (b_list) (conjunction_bdd_list) i=
-			if (i>segment_val) then List.rev conjunction_bdd_list
-			else
-				begin
-					if (segment_val > (List.length b_list)) then 
-  					(
-  						let exp_list = get_reduced_list exp_list segment_val in
-    					let b_list = get_reduced_list b_list segment_val in
-    					let conjunction_bdd = 
-    					conjunction_clauses (exp_list) (bdd_list) (h) (t) in 
-    					segment (reduce_list exp_list segment_val) (reduce_list b_list segment_val) 
-							(conjunction_bdd::conjunction_bdd_list) (i+1)
-						)
-					else 
-						(
-  						let conjunction_bdd = 
-    					conjunction_clauses (exp_list) (bdd_list) (h) (t) in 
-    					segment (exp_list) (b_list) (conjunction_bdd::conjunction_bdd_list) (i+1)
-						)
-				end
-			in segment (exppression_list) (bdd_list) [] 1 ;;
 	
 	let get_reduced_list exp_list segment_val = 
 		(*Valdation check*)
-		if (segment_val>=(List.length exp_list)) then raise (Failure "List is too small")
+		if (segment_val>=(List.length exp_list)) then exp_list (*raise (Failure "List is too small")*)
 		else
 			begin
     		let rec segm new_exp_list i = 
@@ -165,7 +143,7 @@
 
 	let reduce_list exp_list segment_val = 
 		(*Valdation check*)
-		if (segment_val>=(List.length exp_list)) then raise (Failure "List is too small")
+		if (segment_val>=(List.length exp_list)) then exp_list (*raise (Failure "List is too small")*)
 		else
 			begin
     		let rec reduce new_exp_list i = 
@@ -179,6 +157,29 @@
     			in reduce [] (List.length exp_list)
 			end
 			;;
+	
+	let segment_conjunction (expression_list) (obdd_list) (h) (t) (segment_val) = 
+		let rec segment (exp_list) (b_list) (conjunction_bdd_list) i=
+			if (i>((List.length expression_list) / segment_val)) then List.rev conjunction_bdd_list
+			else
+				begin
+					if (segment_val < (List.length b_list)) then 
+  					(
+  						let conjunction_bdd = 
+    					conjunction_clauses (get_reduced_list exp_list segment_val) 
+							(get_reduced_list b_list segment_val) (h) (t) in 
+    					segment (reduce_list exp_list segment_val) (reduce_list b_list segment_val) 
+							(conjunction_bdd::conjunction_bdd_list) (i+1)
+						)
+					else 
+						(
+  						let conjunction_bdd = 
+    					conjunction_clauses (exp_list) (b_list) (h) (t) in 
+    					segment (exp_list) (b_list) (conjunction_bdd::conjunction_bdd_list) (i+1)
+						)
+				end
+			in segment (expression_list) (obdd_list) [] 0 ;;
+	
 	
 	(* 5/ Take the conjunction obdd and present the printout of the OBDD. *)
 	let get_conjunction_obdd = ();;
