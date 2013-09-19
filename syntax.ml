@@ -33,4 +33,10 @@ struct*)
 		| One ->  " One "
 		| Node(x,y,z) ->  " Node ( " ^ (string_of_int x) ^ "," ^ print_bdd y ^ "," ^ print_bdd z ^ " ) "
 	
+	let time f x =
+    let t = Sys.time() in
+    let fx = f x in
+    Printf.printf "Execution time: %fs\n" (Sys.time() -. t);
+    fx;;
+	
 (*end;;*)

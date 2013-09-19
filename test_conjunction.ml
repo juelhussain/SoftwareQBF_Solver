@@ -314,6 +314,22 @@ conjunction (rec2) (rec2exp) (hashtable1) (hashtable2)
 	let rec6exp = get_low_high_list_Vals_Left (rec5exp) (max_var5) (Hashtbl.create 15);;
 	(*Output: expression list = [False; Or (Or (False, True), True); False]*)
 	
+	
+	
+	let nList = [Node(1,Zero,One);Node(2,One,Zero)];;
+	let eList =  [Var "1";Neg(Var "2")];;
+	let hash = Hashtbl.create 15;;
+	let tee = Hashtbl.create 15;;
+	let node_check = (List.nth nList 0) in
+		let exp_check = (build (List.nth eList 0) (hash) (tee)) in
+		let node_check2 = (List.nth nList ((List.length nList)-1)) in
+		let exp_check2 = (build (List.nth eList ((List.length eList)-1)) (hash) (tee)) in
+		if (not((node_check=exp_check2)&&(node_check2=exp_check))) then 
+			"they don't match" else "they do match"
+	
+	conjunction (nList) (List.rev eList) (hash) (tee)
+	
+	
 (* This gives a conjunction over bdds (nodes list) given. Takes global dag *)
 	(* as input which holds each nodes from nodes list as bdd and returns the  *)
 	(* global dag in modified form.                                            *)

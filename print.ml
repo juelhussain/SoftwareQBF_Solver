@@ -90,5 +90,5 @@
 	| e::l -> get_print_exp_asis e ^ " " ^ get_print_exp_list_asis l;;
 	
 	let rec get_print_bdd_list = function 
-	[] -> ""
-	| e::l -> get_print_bdd e ^ " " ^ get_print_bdd_list l;;
+	[] -> "\n"
+	| e::l -> get_print_bdd e ^ " \n" ^ get_print_bdd_list l;;

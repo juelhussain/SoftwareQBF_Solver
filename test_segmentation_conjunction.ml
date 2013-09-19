@@ -1,6 +1,11 @@
 
 
-
+let expList = [Var "1";Var "2";Var "3";Var "4";Var "5"]
+let nodesList = [Node(1,Zero,One);Node(2,Zero,One);Node(3,Zero,One);Node(4,Zero,One);Node(5,Zero,One)]
+	
+let hseg = Hashtbl.create 15
+let tseg = Hashtbl.create 15;;
+	
 let test_c = segment_conjunction ([Var "1";Var "2";Var "3";Var "4";Var "5"]) 
 ([Node(1,Zero,One);Node(2,Zero,One);Node(3,Zero,One);Node(4,Zero,One);Node(5,Zero,One)]) 
 (h1) (t1) (2);;
@@ -26,3 +31,9 @@ Node (1, Zero,
 
 c1=c2;;
 (*Output: bool = true*)
+
+let con_list = start_process_segmentation (expList) (hseg) (tseg) (2);;
+
+Printf.printf "Testing: %s" (get_print_bdd_list (con_list))
+
+let con_list2 = start_process_segmentation (expList) (hseg) (tseg) (2);;

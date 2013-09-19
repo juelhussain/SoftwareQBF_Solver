@@ -3,9 +3,10 @@
 	
 		open Syntax;;
 		open Build;;
+		open Print;;
 		open Convert;;
 		open Manager;;
-
+	
    (** The end of file character. *)
    let eof =
      match Sys.os_type with
@@ -80,10 +81,16 @@
 							print_list (List.rev clauseList);
 							let expList = Convert.convert_clauses_to_ExpressionList (List.rev clauseList) in
 							print_exp_list (expList);
-							(*print_exp_list_asis (expList);*)
 							print_string "---- STARTNIG THE CONJUNCTION PROCESS NOW ----\n\n";
-							let con_bdd = Manager.start_process (expList) (h)(t) in
-							Printf.printf "The final conjunction obdd: \n%s\n" (Syntax.print_bdd (con_bdd))
+							let exp_size = (List.length expList) in
+							Printf.printf "Expression size: %d\n" exp_size;
+							let segment_val = 4(*(exp_size/(if (exp_size > 100) then exp_size/20 
+								else if (exp_size >50) then exp_size/10 else exp_size/2))*) 
+								in
+								Printf.printf "Segmentation value: %d\n" segment_val;
+							let con_bdd_list = Manager.start_process_segmentation (expList) (h) (t) (segment_val)
+							in
+							Printf.printf "The final conjunction obdds: \n%s\n" (Print.get_print_bdd_list (con_bdd_list))							
            with
              Failure str -> print_endline ("QBF_Solver- Error: " ^ str)						
             | Parsing.Parse_error -> print_endline "QBF_Solver- Syntax error."

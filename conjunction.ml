@@ -177,51 +177,63 @@
 	(* ([Var "1";Var "2";Neg(Var "3")]) (Hashtbl.create 15) (Hashtbl.create 15);; *)
 	
 	let conjunction (nList) (eList) (h) (t) =
-		let counter =
-  		let count = ref (-1) in
-  			fun () -> incr count; !count in
-		let rec conjunction' (nodesList) (expList) (m1) =
-			Printf.printf "%d " (counter());
-			if (m1 < 2) then
-					begin
-						let element = (at m1 nodesList) in
-						(*print_string ("Not enough elements. Node only: \n"^(print_bdd element)^"\n");*)
-						element
-					end 
-			else if((List.length nodesList) != (List.length expList)) then 
-				raise (Failure "The expression list and nodes list does not match")
-			else 
-				begin
-    			let rec cycleNodes m =
-    				let element = (at m nodesList) in
-    				if (m >1) then
+		print_string "conjunction: entered process\n";
+		(*Validation check*)
+		let node_check = (List.nth nList 0) in
+		let exp_check = (build (List.nth eList 0) (h) (t)) in
+		let node_check2 = (List.nth nList ((List.length nList)-1)) in
+		let exp_check2 = (build (List.nth eList ((List.length eList)-1)) (h) (t)) in
+		if (not((node_check=exp_check)&&(node_check2=exp_check2))) then 
+			raise (Failure "The obdds and formulas don't match")
+		else 
+			begin
+				print_string "conjunction: Formula and obdd match";
+    		let counter =
+      		let count = ref (-1) in
+      			fun () -> incr count; !count in
+    		let rec conjunction' (nodesList) (expList) (m1) =
+    			Printf.printf "%d " (counter());
+    			if (m1 < 2) then
     					begin
-    						match element with
-    						| Zero -> Zero
-    						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
-    						| _ -> cycleNodes(m -1)
-    					end
-    				else
-    					begin
-    						match element with
-    						| Zero -> Zero
-    						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
-    						| _ -> 
-    							begin
-      							let maxVar = select_max_var (nodesList) in
-    								let left_bdd =
-    									get_left_bdd (nodesList) (expList) (maxVar) (h) (t) in
-    								let right_bdd =
-    									get_right_bdd (nodesList) (expList) (maxVar) (h) (t) in
-    								let left_exp = get_left_exp (expList) (maxVar) in
-    								let right_exp = get_right_exp (expList) (maxVar) in
-    								let k1 = conjunction' (left_bdd) (left_exp) (List.length left_bdd) in
-    								let k2 = conjunction' (right_bdd) (right_exp) (List.length right_bdd) in
-    								make (maxVar) (k1) (k2) (h) (t)
+    						let element = (at m1 nodesList) in
+    						(*print_string ("Not enough elements. Node only: \n"^(print_bdd element)^"\n");*)
+    						element
+    					end 
+    			else if((List.length nodesList) != (List.length expList)) then 
+    				raise (Failure "The expression list and nodes list does not match")
+    			else 
+    				begin
+        			let rec cycleNodes m =
+        				let element = (at m nodesList) in
+        				if (m >1) then
+        					begin
+        						match element with
+        						| Zero -> Zero
+        						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
+        						| _ -> cycleNodes(m -1)
         					end
-    					end
-    			in cycleNodes (m1)
-  			end
-		in conjunction' (nList) (eList) (List.length nList);;
+        				else
+        					begin
+        						match element with
+        						| Zero -> Zero
+        						| One -> conjunction' (drop nodesList m) (drop expList m) (m1 -1)
+        						| _ -> 
+        							begin
+          							let maxVar = select_max_var (nodesList) in
+        								let left_bdd =
+        									get_left_bdd (nodesList) (expList) (maxVar) (h) (t) in
+        								let right_bdd =
+        									get_right_bdd (nodesList) (expList) (maxVar) (h) (t) in
+        								let left_exp = get_left_exp (expList) (maxVar) in
+        								let right_exp = get_right_exp (expList) (maxVar) in
+        								let k1 = conjunction' (left_bdd) (left_exp) (List.length left_bdd) in
+        								let k2 = conjunction' (right_bdd) (right_exp) (List.length right_bdd) in
+        								make (maxVar) (k1) (k2) (h) (t)
+            					end
+        					end
+        			in cycleNodes (m1)
+      			end
+    		in conjunction' (nList) (eList) (List.length nList)
+  		end;;
 	
 (*end;;*)

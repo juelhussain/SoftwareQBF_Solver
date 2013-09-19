@@ -13,7 +13,7 @@
 	(* for later.*)
 	let remove_quants el = 
 		let rec elems el2 i = 
-			if (i>(List.length el)-1) then List.rev el2 else
+			if (i>(List.length el)-1) then (List.rev el2) else
 			let element = (List.nth el i) in 
 			match element with 
 			| Exists(_,_) -> elems el2 (i+1)
@@ -25,7 +25,7 @@
 	(* separate list*)
 	let sep_quants el = 
 		let rec elems el2 i = 
-			if (i>(List.length el)-1) then List.rev el2 else
+			if (i>(List.length el)-1) then (List.rev el2) else
 			let element = (List.nth el i) in 
 			match element with 
 			| Exists(_,_) -> elems (element::el2) (i+1)
@@ -56,8 +56,9 @@
 	(* 4/ For the clauses (now with OBDDs available) the conjunction *)
 	(* module will be run. *)
 	let conjunction_clauses expression_list bdd_list h t = 
-		Printf.printf "the size of expression list: %d \n obdd list: %d\n" 
+		Printf.printf "conjunction_clauses: The size of expression list: %d \n obdd list: %d\n" 
 			(List.length expression_list) (List.length bdd_list);
+		print_string "calling conjunction\n";
 		let con_bdd = conjunction (bdd_list) (expression_list) (h) (t)
 		in con_bdd;;
 	
@@ -68,10 +69,10 @@
 			if (i>(List.length expressionList)-1) then 
 				(*return the conjunction of obdd_list *)
 				begin
-					let bdd_list = List.rev bdd_list in
-					Printf.printf "The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
-					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
-					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
+					let bdd_list = (List.rev bdd_list) in
+					Printf.printf "start_process: The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
+					(*Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
+					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;*)
 					let conjunction_bdd = 
 					conjunction_clauses (exp_list) (bdd_list) (h) (t) in 
 					conjunction_bdd
@@ -166,7 +167,7 @@
 					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
 					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
 					let conjunction_bdd_list = 
-					segment_conjunction (exp_list) (bdd_list) (h) (t) (seg_val) in 
+					segment_conjunction (exp_list) (bdd_list) (h) (t) (if (seg_val < 2) then 2 else seg_val) in 
 					conjunction_bdd_list
 				end
 			else
