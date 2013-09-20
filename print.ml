@@ -49,7 +49,7 @@
     | True ->  "True"
     | False ->  "False"
     | Var x ->  x
-    | And(x,y) ->  get_print_exp x ^ " /\\tes  "^ get_print_exp y 
+    | And(x,y) ->  get_print_exp x ^ " /\\  "^ get_print_exp y 
     | Or(x,y) -> get_print_exp x ^ " \\/ "^ get_print_exp y 
     | Imp(x,y) ->  get_print_exp x ^ " -> "^ get_print_exp y 
     | BImp(x,y) ->   get_print_exp x ^ " <-> "^ get_print_exp y 
@@ -57,6 +57,16 @@
 		| Exists(_,_) ->  "exists"
 		| Forall(_,_) ->  "forall"
 	
+	let rec get_exp_qdimacs (exp) = match exp with 
+    | Var x ->  x
+    | And(x,y) ->  get_exp_qdimacs x ^ " 0\n"^ get_exp_qdimacs y 
+    | Or(x,y) -> get_exp_qdimacs x ^ " "^ get_exp_qdimacs y 
+    | Neg(x) ->  "-"^ get_exp_qdimacs x
+		| Exists(x,_) ->  "e "^x
+		| Forall(y,_) ->  "a "^y
+		| True -> "T"
+		| False -> "F"
+		| _ -> raise (Failure "(Print) Given formula not in correct format\n")
 	
 	let rec get_print_bdd (a: bdd) = match a with 
 		| Zero ->  " Zero "
@@ -82,8 +92,8 @@
 
 
 	let rec get_print_exp_list = function 
-	[] -> ""
-	| e::l -> (get_print_exp e) ^ " " ^ (get_print_exp_list l);;
+	[] -> "\n"
+	| e::l -> (get_print_exp e) ^ " \n" ^ (get_print_exp_list l);;
 
 	let rec get_print_exp_list_asis = function 
 	[] -> ""
@@ -92,3 +102,9 @@
 	let rec get_print_bdd_list = function 
 	[] -> "\n"
 	| e::l -> get_print_bdd e ^ " \n" ^ get_print_bdd_list l;;
+
+	let rec get_exp_list_to_qdimacs = function 
+	[] -> "\n"
+	| e::l -> get_exp_qdimacs e ^ " 0\n" ^ get_exp_list_to_qdimacs l;;
+
+

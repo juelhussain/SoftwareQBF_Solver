@@ -225,54 +225,6 @@
 			
 			
 			
-			
-				
-	let convert_string_to_OR_clauseOld stringClause = 
-		let listVars = split ' ' stringClause in 
-		let rec processListVars lv i=
-			if (i>(List.length lv)-1) then 
-				print_endline "done" 
-			else
-				begin
-					print_endline (List.nth lv i);
-					processListVars lv (i+1)
-				end
-		in processListVars listVars 0;;	
-			
-	let covert_clauses_to_ExpressionListOld clauseList =
-		let rec getClause expressionList i =
-			if (i>(List.length clauseList)-1) then List.rev expressionList
-			else
-				begin
-				 let clause = (List.nth clauseList i) in 
-					if (clause.[0]='e') then
-						getClause (True::expressionList) (i+1)
-					else if (clause.[0]='p') then 
-						getClause (False::expressionList) (i+1)
-					else 
-						begin
-						 getClause (True::expressionList) (i+1)
-						end
-				end
-			in getClause [] 0;;
-
-  let string_to_disjunctionOld2 stringClause = 
-  		let listVars = split ' ' stringClause in 
-  		let rec processListVars lv i exp=
-  			if (i>(List.length lv)-1) then 
-  				exp
-  			else if (i>(List.length lv)-2) then 
-  				begin
-  					let finalvar = (List.nth lv i) in
-  					processListVars lv (i+1) (Or(exp, Var finalvar)) 
-  				end
-  			else
-  				begin
-  					let var = (List.nth lv i) in
-  					let exp2 = Or(exp, Var var) in
-  					processListVars lv (i+1) (exp2) 
-  				end
-  		in processListVars listVars 1 (Var (List.nth listVars 0));;	
 					
 (*	end ;;*)
 	

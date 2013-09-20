@@ -187,7 +187,7 @@
 			raise (Failure "The obdds and formulas don't match")
 		else 
 			begin
-				print_string "conjunction: Formula and obdd match";
+				print_string "conjunction: Formulas and obdds match.\n Recursion: ";
     		let counter =
       		let count = ref (-1) in
       			fun () -> incr count; !count in

@@ -32,8 +32,18 @@ Node (1, Zero,
 c1=c2;;
 (*Output: bool = true*)
 
+
+
 let con_list = start_process_segmentation (expList) (hseg) (tseg) (2);;
 
 Printf.printf "Testing: %s" (get_print_bdd_list (con_list))
 
 let con_list2 = start_process_segmentation (expList) (hseg) (tseg) (2);;
+
+let func x = x*2 
+
+
+time (start_process_segmentation) (expList) (hseg) (tseg) (2)
+
+start_process (exp_list) (hseg) (tseg)
+

@@ -6,7 +6,6 @@
 		open Print;;
 		open Convert;;
 		open Manager;;
-		open TranslateINF;;
 	
    (** The end of file character. *)
    let eof =
@@ -76,9 +75,9 @@
            try
 							let h = Hashtbl.create 15 in
 							let t = Hashtbl.create 15 in
-							Printf.printf "QBF_Solver- Will run the Lexer with %s file\n" str;
+							Printf.printf "Will run the Lexer with %s file\n" str;
 							let clauseList = run(open_in str) in
-							Printf.printf "QBF_Solver- There are %d clause in the given file\n" (List.length clauseList);
+							Printf.printf "There are %d clause in the given file\n" (List.length clauseList);
 							print_list (List.rev clauseList);
 							let expList = Convert.convert_clauses_to_ExpressionList (List.rev clauseList) in
 							print_exp_list (expList);
@@ -88,19 +87,9 @@
 							let segment_val = 4(*(exp_size/(if (exp_size > 100) then exp_size/20 
 								else if (exp_size >50) then exp_size/10 else exp_size/2))*) 
 								in
-								Printf.printf "QBF_Solver- Segmentation value: %d\n" segment_val;
-							let con_bdd_list = Manager.start_process_segmentation (expList) (h) (t) (segment_val) 
-							in
-							let cnf_con_list = TranslateINF.translate_list_to_cnf(con_bdd_list)
-							in
-							let cnf_list = TranslateINF.to_cnf_list (cnf_con_list)
-							in
-							let qdimacs = Print.get_exp_list_to_qdimacs(cnf_list) in
-							Printf.printf "QBF_Solver- The final conjunction obdds: \n%s\n\n" (Print.get_print_bdd_list (con_bdd_list));
-							print_string"-------------------------CONJUNCTION FORMULA---------------------------------------\n\n";	
-							Printf.printf "%s\n" (Print.get_print_exp_list (cnf_con_list));
-							print_string"---------------------------QDIMACS FORMAT------------------------------------------\n\n";	
-							Printf.printf "%s\n%s\n" ("p cnf "^(string_of_int exp_size)) (qdimacs);						
+								Printf.printf "Segmentation value: %d\n" segment_val;
+							let con_bdd_list = Manager.start_process_segmentation (expList) (h) (t) (segment_val) in
+							Printf.printf "The final conjunction obdds: \n%s\n" (Print.get_print_bdd_list (con_bdd_list))							
            with
              Failure str -> print_endline ("QBF_Solver- Error: " ^ str)						
             | Parsing.Parse_error -> print_endline "QBF_Solver- Syntax error."
