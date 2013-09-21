@@ -85,7 +85,8 @@
 							print_string "---- STARTNIG THE CONJUNCTION PROCESS NOW ----\n\n";
 							let exp_size = (List.length expList) in
 							Printf.printf "Expression size: %d\n" exp_size;
-							let segment_val = 4(*(exp_size/(if (exp_size > 100) then exp_size/20 
+							let segment_val = 2
+							(*(exp_size/(if (exp_size > 100) then exp_size/20 
 								else if (exp_size >50) then exp_size/10 else exp_size/2))*) 
 								in
 								Printf.printf "QBF_Solver- Segmentation value: %d\n" segment_val;
@@ -99,6 +100,7 @@
 							Printf.printf "QBF_Solver- The final conjunction obdds: \n%s\n\n" (Print.get_print_bdd_list (con_bdd_list));
 							print_string"-------------------------CONJUNCTION FORMULA---------------------------------------\n\n";	
 							Printf.printf "%s\n" (Print.get_print_exp_list (cnf_con_list));
+							Printf.printf "QBF_Solver- segmentation value: %s\n" (string_of_int segment_val);
 							print_string"---------------------------QDIMACS FORMAT------------------------------------------\n\n";	
 							Printf.printf "%s\n%s\n" ("p cnf "^(string_of_int exp_size)) (qdimacs);						
            with

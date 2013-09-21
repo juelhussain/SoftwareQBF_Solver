@@ -182,6 +182,75 @@
 					else (raise (Failure "The clause is not in correct format"))
 				end	
 		in build_exp expressionList [] 0;;
+		
+		
+		
+		(* New design. Take the expression list and break it up according to segmentation value. *)
+		(* Then build the expressions and each time a breakup happens create a new Hashtbl set. *)
+		(* Then pass those as parameters to conjunction_bdd. *)
+		let start_process_segmentation expressionList (h) (t) (seg_val) =
+			let expressionList = remove_quants (expressionList) in
+			let rec segment conjunction_bdd_list exp_list bdd_list i j =
+				if (j>=seg_val) then 
+					begin
+						(*CALL CONJUNCTION WITH bdd_list and exp_list and then reset*)
+						let conjunction_bdd = 
+							conjunction_clauses (exp_list) (bdd_list) (h) (t) in 						
+						let exp_list = [] in
+						let bdd_list = [] in
+						Hashtbl.clear h;
+						Hashtbl.clear t;
+						segment (conjunction_bdd::conjunction_bdd_list) exp_list bdd_list i 0
+					end
+				else	if (i>=(List.length expressionList)) then 
+					if (j=0) then List.rev (conjunction_bdd_list)
+					else
+						begin
+    					let conjunction_bdd = conjunction_clauses (exp_list) (bdd_list) (h) (t)
+    					in List.rev (conjunction_bdd::conjunction_bdd_list)
+						end
+				(* When j is segment value reset. Keep recursion until i = expressionList *)
+				else
+				let clause = (List.nth expressionList i) in 
+					if (check_clause clause) then 
+						begin
+							(*build the clause*)
+							segment conjunction_bdd_list 
+								(clause::exp_list) ((build_clause (clause) (h) (t))::bdd_list) (i+1) (j+1);
+						end
+					else (raise (Failure "The clause is not in correct format"))
+				in segment [] [] [] 0 0;;
+				
+			
+			
+				
+		(*This is to be called for conjunction bdd with segmentation for optimisation*)
+		let start_process_segmentation_old expressionList (h) (t) (seg_val) = 
+		let expressionList = remove_quants (expressionList) in
+		let rec build_exp exp_list bdd_list i =
+			if (i>(List.length expressionList)-1) then 
+				(*return the conjunction of obdd_list *)
+				begin
+					let bdd_list = List.rev bdd_list in
+					Printf.printf "The input lists sizes are: exp: %d bdd: %d\n" (List.length exp_list) (List.length bdd_list);
+					Printf.printf "The contents of bdd: \n"; print_bdd_list bdd_list;
+					Printf.printf "The contents of exp: \n"; print_exp_list exp_list;
+					let conjunction_bdd_list = 
+					segment_conjunction (exp_list) (bdd_list) (h) (t) (if (seg_val < 2) then 2 else seg_val) in 
+					conjunction_bdd_list
+				end
+			else
+				begin
+					(*check the expression is correct format*)
+					let clause = (List.nth exp_list i) in 
+					if (check_clause clause) then 
+						begin
+							(*build the clause*)
+							build_exp exp_list ((build_clause (clause) (h) (t))::bdd_list) (i+1);
+						end
+					else (raise (Failure "The clause is not in correct format"))
+				end	
+		in build_exp expressionList [] 0;;
 	
 	
 	
@@ -207,25 +276,6 @@
 	let get_results = ();;
 
 
-	(* 1/ This is the entry point to the full evaluation process *)
-	let startOLD expressionList (h) (t) = 
-		let rec build_exp exp_list bdd_list i =
-			if (i>(List.length expressionList)-1) then 
-				(*return the bdd list *)
-				bdd_list
-				(*check the expression is correct format*)
-			else
-				begin
-					let clause = (List.nth exp_list i) in 
-					if (check_clause clause) then 
-						begin
-							(*build the clause*)
-							let bdd = build_clause (clause) (h) (t) in 
-							build_exp exp_list (bdd::bdd_list) (i+1);
-						end
-					else (raise (Failure "The clause is not in correct format"))
-				end	
-			in build_exp expressionList [] 0;;
 	
 
 
