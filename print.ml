@@ -62,8 +62,12 @@
     | And(x,y) ->  get_exp_qdimacs x ^ " 0\n"^ get_exp_qdimacs y 
     | Or(x,y) -> get_exp_qdimacs x ^ " "^ get_exp_qdimacs y 
     | Neg(x) ->  "-"^ get_exp_qdimacs x
-		| Exists(x,_) ->  "e "^x
-		| Forall(y,_) ->  "a "^y
+		| Exists(x,_) ->  if ((String.sub x ((String.length x) - 1) 1) = "0") then 
+			"e "^(String.sub x (0) ((String.length x)-2))
+			else "e "^x
+		| Forall(y,_) ->  if ((String.sub y ((String.length y) - 1) 1) = "0") then 
+			"a "^(String.sub y (0) ((String.length y)-2))
+			else "a "^y
 		| True -> "T"
 		| False -> "F"
 		| _ -> raise (Failure "(Print) Given formula not in correct format\n")
@@ -104,7 +108,7 @@
 	| e::l -> get_print_bdd e ^ " \n" ^ get_print_bdd_list l;;
 
 	let rec get_exp_list_to_qdimacs = function 
-	[] -> "\n"
+	[] -> ""
 	| e::l -> get_exp_qdimacs e ^ " 0\n" ^ get_exp_list_to_qdimacs l;;
 
 

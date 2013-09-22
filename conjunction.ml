@@ -177,7 +177,6 @@
 	(* ([Var "1";Var "2";Neg(Var "3")]) (Hashtbl.create 15) (Hashtbl.create 15);; *)
 	
 	let conjunction (nList) (eList) (h) (t) =
-		print_string "conjunction: entered process\n";
 		(*Validation check*)
 		let node_check = (List.nth nList 0) in
 		let exp_check = (build (List.nth eList 0) (h) (t)) in
@@ -187,8 +186,7 @@
 			raise (Failure "The obdds and formulas don't match")
 		else 
 			begin
-				print_string "conjunction: Formulas and obdds match.\n Recursion: ";
-    		let counter =
+				let counter =
       		let count = ref (-1) in
       			fun () -> incr count; !count in
     		let rec conjunction' (nodesList) (expList) (m1) =
