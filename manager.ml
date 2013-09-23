@@ -5,7 +5,8 @@
 	(*open Operations;;*)
 	open Print;;
 	open Conjunction;;
-	
+	open Disjunction;; 
+	open Convert
 	
 	
 	
@@ -47,6 +48,21 @@
 	| Forall(_,_) -> false
 	| Exists (_,_) -> false
 	| Neg (x) -> check_clause (x)
+
+	let check_clause_size (exp) = 
+		let rec nextcheck var i =
+			match var with
+			| True -> i
+			| False -> i
+			| Var x -> i
+			| Neg(_) -> i
+			| Exists(_,_) -> i
+			| Forall(_,_) -> i
+			| And(x,y) -> (nextcheck x (i+1))+(nextcheck y (i+1)) -1
+			| Or(x,y) -> (nextcheck x (i+1))+(nextcheck y (i+1)) -1
+			| Imp(x,y) -> (nextcheck x (i+1))+(nextcheck y (i+1)) -1
+			| BImp(x,y) -> (nextcheck x (i+1))+(nextcheck y (i+1)) -1
+		in nextcheck exp 0
 
 	(* 3/ For each of the clauses the build function will be run *)
 	(* with the OBDDs for each data stored in the Hashtable. *)
@@ -116,7 +132,7 @@
 
 	let reduce_list exp_list segment_val = 
 		(*Valdation check*)
-		if (segment_val>=(List.length exp_list)) then exp_list (*raise (Failure "List is too small")*)
+		if (segment_val>=(List.length exp_list)) then [] (*raise (Failure "List is too small")*)
 		else
 			begin
     		let rec reduce new_exp_list i = 
@@ -154,9 +170,117 @@
 			in segment (expression_list) (obdd_list) [] 0 ;;
 		
 		
+		let rec build_string = function 
+      	[] -> ""
+      	| h::t -> h^" "^(build_disjunction t)
+
+
+		let get_clause_disjunct string_clause break_up_no h t = 
+			 (* A string clause more than break_up_no variables is going to come in*)
+			let string_clause_list = split ' ' string_clause in
+			let rec process dis_bdd_list dis_exp_list i c_list =
+				if ((i+break_up_no*2)<=(List.length c_list)) then 
+				 begin
+						(*get the partial string up to amount*)
+						let new_clause = build_string (get_reduced_list c_list break_up_no) in
+  					let c_list = reduce_list c_list break_up_no in
+  					let new_exp = convert_clause_to_Expression (new_clause) in
+  					let bdd1 = build_clause (new_exp) (h) (t) in
+  					
+  					(*get second partial list*)
+  					let new_clause2 = build_string (get_reduced_list c_list break_up_no) in
+  					let c_list = reduce_list c_list break_up_no in
+  					let new_exp2 = convert_clause_to_Expression (new_clause2) in
+  					let bdd2 = build_clause (new_exp2) (h) (t) in
+  					
+  					(* Get this disjunction of the two*)
+  					let new_dis_bdd = disjunction ([bdd1;bdd2]) ([new_exp;new_exp2]) (h) (t)
+  					in
+  					process (new_dis_bdd::dis_bdd_list) ((Or(new_exp,new_exp2))::dis_exp_list) (i+break_up_no*2) c_list
+					end
+				else if ((i=1)&&((i+break_up_no*2)>=(List.length c_list)))
+				then 
+					begin
+						let new_clause3 = build_string (c_list) in
+						let new_exp3 = convert_clause_to_Expression (new_clause3) in
+						let bdd3 = build_clause (new_exp3) (h) (t) in
+						(* Get this disjunction of everything*)
+						bdd3
+					end
+				else
+					begin
+						let new_clause3 = build_string (c_list) in
+						let new_exp3 = convert_clause_to_Expression (new_clause3) in
+						let bdd3 = build_clause (new_exp3) (h) (t) in
+					
+						(* Get this disjunction of everything*)
+						let new_dis_bdd = disjunction (bdd3::dis_bdd_list) (new_exp3::dis_exp_list) (h) (t)
+						in
+						new_dis_bdd
+					end
+				in process [] [] 1 string_clause_list
+		
+		(* Newest design. Like segmentation this will break up the incoming conjunction. *)
+		(* But this also tackeles the clause it self, if there are many variables, to *)
+		(* avoid exponential break up will handle in smaller chunks.*)
+		
+		let start_process_segmentation_double stringClauseList (h) (t) (seg_val) (segment_or)=
+			let rec segment conjunction_bdd_list exp_list bdd_list i j =
+				if (i>=(List.length stringClauseList)) then 
+					if (j=0) then List.rev (conjunction_bdd_list)
+					else
+						begin
+    					let conjunction_bdd = conjunction_clauses (exp_list) (bdd_list) (h) (t)
+    					in List.rev (conjunction_bdd::conjunction_bdd_list)
+						end
+				else if (j>=seg_val) then 
+					begin
+						(*CALL CONJUNCTION WITH bdd_list and exp_list and then reset*)
+						let conjunction_bdd = 
+							conjunction_clauses (exp_list) (bdd_list) (h) (t) in 						
+						let exp_list = [] in
+						let bdd_list = [] in
+						Hashtbl.clear h;
+						Hashtbl.clear t;
+						segment (conjunction_bdd::conjunction_bdd_list) exp_list bdd_list i 0
+					end
+				(* When j is segment value reset. Keep recursion until i = expressionList *)
+				else
+					begin
+						(* First check if there are more than 4 variables in a clause. *)
+						(* If there is, then to avoid exponential blow up and processing time,*)
+						(* break up the building by five varibles each turn until last clause which *)
+						(* should be 4 or less. Then run disjunction between them. *)
+  					let string_clause = (List.nth stringClauseList i) in
+  					if ((List.length (split ' ' string_clause))>(segment_or*2)) then 
+							begin
+							print_string "manager: segmenting disjunction";
+  						let clause_bdd = (get_clause_disjunct string_clause segment_or h t) in 
+							segment conjunction_bdd_list 
+  								((convert_clause_to_Expression string_clause)::exp_list) (clause_bdd::bdd_list) (i+1) (j+1)
+  						end
+						else 
+							let clause = convert_clause_to_Expression (List.nth stringClauseList i) in
+							if (check_clause clause) then 
+  							begin
+  								(*build the clause*)
+  								segment conjunction_bdd_list 
+  									(clause::exp_list) ((build_clause (clause) (h) (t))::bdd_list) (i+1) (j+1);
+  							end
+  						else (raise (Failure "The clause is not in correct format"))
+					end
+				in segment [] [] [] 0 0;;
+		
+		
+
+		
+					
+					
+					
 		(* New design. Take the expression list and break it up according to segmentation value. *)
 		(* Then build the expressions and each time a breakup happens create a new Hashtbl set. *)
 		(* Then pass those as parameters to conjunction_bdd. *)
+		
 		let start_process_segmentation expressionList (h) (t) (seg_val) =
 			let expressionList = remove_quants (expressionList) in
 			let rec segment conjunction_bdd_list exp_list bdd_list i j =

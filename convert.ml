@@ -223,8 +223,14 @@
 				end
 			in getClause [] 0;;			
 			
+		
+			let convert_clause_to_Expression clause =
+				 if (clause.[0]='e') then Exists((split_and_concat ('e') clause), True)
+					else if (clause.[0]='a') then Forall((split_and_concat ('a') clause), True)
+					else if (clause.[0]='p') then False
+					else (string_to_disjunction clause)					
 			
-			
+	
 					
 (*	end ;;*)
 	

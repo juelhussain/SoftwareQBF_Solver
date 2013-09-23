@@ -40,7 +40,29 @@
 		(* Takes an expression and converts to CNF representation. *)
 		
 		
-		
+		let rec to_cnf_with_contra formula =
+			match formula with 
+			| BImp(p,q) -> to_cnf(And(Imp(to_cnf p, to_cnf q),Imp( to_cnf q,to_cnf p)))
+			| Imp(p,q) -> to_cnf(Or(Neg(to_cnf p), to_cnf q))
+			| Neg(Or(p,q)) -> to_cnf(And(Neg(to_cnf p),Neg(to_cnf q)))
+			| Neg(And(p,q)) -> to_cnf(Or(Neg(to_cnf p),Neg(to_cnf q)))
+			| Neg(Neg(p)) -> to_cnf p
+			| And(p,True) -> to_cnf p | And(True,p) -> to_cnf p
+			| And(p,False) -> False | And(False,p) -> False
+			| And(p,Neg(q)) -> if (p=q) 
+					then (to_cnf p) 
+					else And(to_cnf p, to_cnf (Neg(q)))
+		  | And(Neg(p),q) -> if (p=q) then (to_cnf q) else And(to_cnf (Neg(p)), to_cnf q)
+			| Or(p,True) -> True | Or(True,p) -> True
+			| Or(p,False) -> to_cnf p | Or(False,p) -> to_cnf p 
+			| Neg(True) -> False
+			| Neg(False) -> True
+			| Or(And(p,q),r) -> to_cnf(And(Or(to_cnf p, to_cnf r),Or(to_cnf q, to_cnf r)))
+			| Or(r,And(p,q)) -> to_cnf(And(Or(to_cnf p, to_cnf r),Or(to_cnf q, to_cnf r)))
+			| And(p,q) -> And(to_cnf p, to_cnf q)
+			| Or(p,q) -> Or(to_cnf p, to_cnf q)
+			| Neg(p) -> Neg(to_cnf p)
+			| _ -> formula
 		
 		let rec to_cnf formula =
 			match formula with 
