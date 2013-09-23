@@ -344,10 +344,14 @@ print_bdd (exec_time41);;
 (* Node ( 17, Node ( 19, Zero , One  ) , Node ( 19, Zero , One  )  ) , Node ( 17, *)
 (* Node ( 19, Zero , One  ) , Node ( 19, Zero , One  )  )  )  )  )  )  )  )  )  )  )  )  )  )  )  ) - : unit = ()
 
+*)
 
+let testStringExp = ["38 36 29 34 35 41 46 50 44 40 27 274 49 42 31 43 33 30 32 39 51 48 28 37 47 45 0";
+"357 -130 0"];;
+let clauses = convert_clauses_to_ExpressionList (testStringExp);;
 
+let testh = Hashtbl.create 15;;
+let testt = Hashtbl.create 15;;
 
-
-
-
-
+let node1 = build (List.nth clauses 0) (testh) (testt)
+let node2 = build (List.nth clauses 1) (testh) (testt)
