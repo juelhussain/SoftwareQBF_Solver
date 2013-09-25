@@ -40,7 +40,7 @@
 		(* Takes an expression and converts to CNF representation. *)
 		
 		
-		let rec to_cnf_with_contra formula =
+		(*let rec to_cnf_with_contra formula =
 			match formula with 
 			| BImp(p,q) -> to_cnf(And(Imp(to_cnf p, to_cnf q),Imp( to_cnf q,to_cnf p)))
 			| Imp(p,q) -> to_cnf(Or(Neg(to_cnf p), to_cnf q))
@@ -62,7 +62,7 @@
 			| And(p,q) -> And(to_cnf p, to_cnf q)
 			| Or(p,q) -> Or(to_cnf p, to_cnf q)
 			| Neg(p) -> Neg(to_cnf p)
-			| _ -> formula
+			| _ -> formula*)
 		
 		let rec to_cnf formula =
 			match formula with 
@@ -105,7 +105,40 @@
 					end
 			in translate [] 0
 		
-		
+		let rec remove_contras fm = 
+			match fm with
+			| And(p,Neg(q)) -> if (p=q) 
+					then (remove_contras p) 
+					else And(p, remove_contras (Neg(q)))
+		  | And(Neg(p),q) -> if (p=q) then (remove_contras q) else And(Neg(p), remove_contras q)
+			| _ -> fm
+			
+		let rec to_cnf_with_contra formula =
+			match formula with 
+			| BImp(p,q) -> to_cnf_with_contra(And(Imp(to_cnf_with_contra p, to_cnf_with_contra q),Imp( to_cnf_with_contra q,to_cnf_with_contra p)))
+			| Imp(p,q) -> to_cnf_with_contra(Or(Neg(to_cnf_with_contra p), to_cnf_with_contra q))
+			| Neg(Or(p,q)) -> to_cnf_with_contra(And(Neg(to_cnf_with_contra p),Neg(to_cnf_with_contra q)))
+			| Neg(And(p,q)) -> to_cnf_with_contra(Or(Neg(to_cnf_with_contra p),Neg(to_cnf_with_contra q)))
+			| Neg(Neg(p)) -> to_cnf_with_contra p
+			| And(p,True) -> to_cnf_with_contra p | And(True,p) -> to_cnf_with_contra p
+			| And(p,False) -> False | And(False,p) -> False
+			| And(p,Neg(q)) -> if (p=q) 
+					then (to_cnf_with_contra p) 
+					else remove_contras And(p,Neg(q))
+		  | And(Neg(p),q) -> if (p=q) then (to_cnf_with_contra q) 
+					else remove_contras And(Neg(p),q)
+			| Or(p,True) -> True | Or(True,p) -> True
+			| Or(p,False) -> to_cnf_with_contra p | Or(False,p) -> to_cnf_with_contra p 
+			| Neg(True) -> False
+			| Neg(False) -> True
+			| Or(And(p,q),r) -> to_cnf_with_contra(And(Or(to_cnf_with_contra p, to_cnf_with_contra r),Or(to_cnf_with_contra q, to_cnf_with_contra r)))
+			| Or(r,And(p,q)) -> to_cnf_with_contra(And(Or(to_cnf_with_contra p, to_cnf_with_contra r),Or(to_cnf_with_contra q, to_cnf_with_contra r)))
+			| And(p,q) -> And(to_cnf_with_contra p, to_cnf_with_contra q)
+			| Or(p,q) -> Or(to_cnf_with_contra p, to_cnf_with_contra q)
+			| Neg(p) -> Neg(to_cnf_with_contra p)
+			| _ -> formula
+
+
 		(* This function converts back a variable assignment that was given using the *)
 		(* hashtable index. *)
 		let rec replace_vars v h = 

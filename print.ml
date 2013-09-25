@@ -18,7 +18,7 @@
     | True -> print_string "True"
     | False -> print_string "False"
     | Var x -> Printf.printf " %s" x
-    | And(x,y) ->  print_exp x ;print_string " /\\tes  "; print_exp y 
+    | And(x,y) ->  print_exp x ;print_string " /\\  "; print_exp y 
     | Or(x,y) -> print_exp x ;print_string " \\/ "; print_exp y 
     | Imp(x,y) ->  print_exp x ;print_string " -> "; print_exp y 
     | BImp(x,y) ->   print_exp x ;print_string " <-> "; print_exp y 

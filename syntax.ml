@@ -33,10 +33,34 @@ struct*)
 		| One ->  " One "
 		| Node(x,y,z) ->  " Node ( " ^ (string_of_int x) ^ "," ^ print_bdd y ^ "," ^ print_bdd z ^ " ) "
 	
-	let time f x =
+	let time1 string_label f x =
     let t = Sys.time() in
     let fx = f x in
-    Printf.printf "Execution time: %fs\n" (Sys.time() -. t);
+    Printf.printf "Execution time %s: %fs\n" (string_label) (Sys.time() -. t);
     fx;;
+
+	let time2 string_label f x y =
+    let t = Sys.time() in
+    let fxy = f x y in
+    Printf.printf "Execution time %s: %fs\n" (string_label) (Sys.time() -. t);
+    fxy;;
+
+	let time3 string_label f x y z =
+    let t = Sys.time() in
+    let fxyz = f x y z in
+    Printf.printf "\n-------------\nExecution time %s: %fs\n-------------\n" (string_label) (Sys.time() -. t);
+    fxyz
+		
+	let time4 string_label f w x y z =
+    let t = Sys.time() in
+    let fwxyz = f w x y z in
+    Printf.printf "\n-------------\nExecution time %s: %fs\n-------------\n" (string_label) (Sys.time() -. t);
+    fwxyz
+		
+	let time5 string_label f v w x y z =
+    let t = Sys.time() in
+    let fvwxyz = f v w x y z in
+    Printf.printf "\n-------------\nExecution time %s: %fs\n-------------\n" (string_label) (Sys.time() -. t);
+    fvwxyz
 	
 (*end;;*)
