@@ -21,6 +21,12 @@
 			| Forall(_,_) -> elems el2 (i+1)
 			| _ -> elems (element::el2) (i+1)
 		in elems [] 0;;
+
+	let is_quant el = 
+			match el with 
+			| Exists(_,_) -> true
+			| Forall(_,_) -> true
+			| _ -> false
 		
 	(* 1b/ This will get the quantifiers from the expression list as a *)
 	(* separate list*)
@@ -102,7 +108,7 @@
 							(*build the clause*)
 							build_exp exp_list ((build_clause (clause) (h) (t))::bdd_list) (i+1);
 						end
-					else (raise (Failure ("The clause is not in correct format: "^(get_print_exp_asis clause))))
+					else (raise (Failure ("manager:The clause is not in correct format: "^(get_print_exp_asis clause))))
 				end	
 		in build_exp expressionList [] 0;;
 		
@@ -172,7 +178,7 @@
 		
 		let rec build_string = function 
       	[] -> ""
-      	| h::t -> h^" "^(build_disjunction t)
+      	| h::t -> h^" "^(build_string t)
 
 
 		let get_clause_disjunct string_clause break_up_no h t = 
@@ -185,34 +191,33 @@
 						let new_clause = build_string (get_reduced_list c_list break_up_no) in
   					let c_list = reduce_list c_list break_up_no in
   					let new_exp = convert_clause_to_Expression (new_clause) in
-  					let bdd1 = build_clause (new_exp) (h) (t) in
-  					
-  					(*get second partial list*)
-  					let new_clause2 = build_string (get_reduced_list c_list break_up_no) in
-  					let c_list = reduce_list c_list break_up_no in
-  					let new_exp2 = convert_clause_to_Expression (new_clause2) in
-  					let bdd2 = build_clause (new_exp2) (h) (t) in
-  					
-  					(* Get this disjunction of the two*)
-  					let new_dis_bdd = disjunction ([bdd1;bdd2]) ([new_exp;new_exp2]) (h) (t)
-  					in
-  					process (new_dis_bdd::dis_bdd_list) ((Or(new_exp,new_exp2))::dis_exp_list) (i+break_up_no*2) c_list
-					end
+						let bdd1 = build_clause (new_exp) (h) (t) in
+      			
+						(*get second partial list*)
+      			let new_clause2 = build_string (get_reduced_list c_list break_up_no) in
+      			let c_list = reduce_list c_list break_up_no in
+      			let new_exp2 = convert_clause_to_Expression (new_clause2) in
+    				let bdd2 = build_clause (new_exp2) (h) (t) in
+          					
+          	(* Get this disjunction of the two*)
+          	let new_dis_bdd = disjunction ([bdd1;bdd2]) ([new_exp;new_exp2]) (h) (t)
+          	in
+          	process (new_dis_bdd::dis_bdd_list) ((Or(new_exp,new_exp2))::dis_exp_list) (i+break_up_no*2) c_list
+					end	
 				else if ((i=1)&&((i+break_up_no*2)>=(List.length c_list)))
 				then 
 					begin
 						let new_clause3 = build_string (c_list) in
 						let new_exp3 = convert_clause_to_Expression (new_clause3) in
 						let bdd3 = build_clause (new_exp3) (h) (t) in
-						(* Get this disjunction of everything*)
+								(* Get this disjunction of everything*)
 						bdd3
 					end
 				else
 					begin
 						let new_clause3 = build_string (c_list) in
 						let new_exp3 = convert_clause_to_Expression (new_clause3) in
-						let bdd3 = build_clause (new_exp3) (h) (t) in
-					
+						let bdd3 = build_clause (new_exp3) (h) (t) in	
 						(* Get this disjunction of everything*)
 						let new_dis_bdd = disjunction (bdd3::dis_bdd_list) (new_exp3::dis_exp_list) (h) (t)
 						in
@@ -252,9 +257,12 @@
 						(* break up the building by five varibles each turn until last clause which *)
 						(* should be 4 or less. Then run disjunction between them. *)
   					let string_clause = (List.nth stringClauseList i) in
-  					if ((List.length (split ' ' string_clause))>(segment_or*2)) then 
+						let clause = convert_clause_to_Expression (string_clause) in
+						if (is_quant(clause)) then 
+							segment conjunction_bdd_list (exp_list) (bdd_list) (i+1) (j)
+  					else if ((List.length (split ' ' string_clause))>(segment_or*2)) then 
 							begin
-							print_string "manager: segmenting disjunction";
+							print_endline "manager: segmenting disjunction";
   						let clause_bdd = (get_clause_disjunct string_clause segment_or h t) in 
 							segment conjunction_bdd_list 
   								((convert_clause_to_Expression string_clause)::exp_list) (clause_bdd::bdd_list) (i+1) (j+1)
@@ -267,11 +275,170 @@
   								segment conjunction_bdd_list 
   									(clause::exp_list) ((build_clause (clause) (h) (t))::bdd_list) (i+1) (j+1);
   							end
-  						else (raise (Failure "The clause is not in correct format"))
+  						else (raise (Failure ("manager:The clause is not in correct format: "^(Print.get_print_exp_asis clause))))
 					end
 				in segment [] [] [] 0 0;;
 		
+		(* returns the element at position k of list given *)
+    let rec at k = function
+        | [] -> raise (Failure "at: List is empty")
+        | h :: t -> if k = 1 then h else at (k-1) t
 		
+		let testFor i = for j=1 to 10 do print_string "test\n" done i 
+		
+		
+		let get_max_var (clauseList) =
+			let rec iter clause i var_i= 
+				if (i = (List.length clauseList)) then 
+					 "complete\n"
+    			else
+						begin
+							let varList = (split ' ' clause) in
+							for j = 1 to (List.length varList) do
+								Printf.printf "not complete %s\n" (at j varList)
+								done;
+								("test"^(at i clauseList));
+							iter (at (i+1) (clauseList)) (i+1) var_i							
+						end
+				 in iter (at 1 clauseList) (1) (-1)	
+		
+		let remove_neg var =
+			if (String.sub var 0 1="-") then 
+					let var = (String.sub var 1 ((String.length var)-1)) 	in var
+			else var 
+		
+		(* As select_max_var but higher value takes priority*)			
+		let get_max_var (clauseList) (max_or_total: int)=
+			let clauseList = (List.rev ("0"::(List.rev clauseList))) in
+    	let rec iter clause i var_i k= 
+    		if (i >= (List.length clauseList)) then 
+						if (max_or_total = 1) then 
+							begin var_i end else k
+    			else
+						begin
+  						(*Split the clause up*)
+  						let varList = (split ' ' clause) in
+							let rec cycleVarList j =
+								if (j=(List.length varList)) then 
+									begin
+										let var1 = (at j varList) in	
+										let var = remove_neg var1 in 					
+										Printf.printf "This is the var %s\n" var;
+										if ((int_of_string var) > var_i) then 
+											iter (at (i+1) (clauseList)) (i+1) (int_of_string (var)) (j+k)
+										else
+										 	iter (at (i+1) (clauseList)) (i+1) var_i (j+k)
+									end
+								else
+									begin
+										Printf.printf "This is the var %s\n" (at j varList);
+										cycleVarList (j+1)
+									end
+								in cycleVarList 1;
+  					end 
+    in iter (at 1 clauseList) (1) (-1) 0
+		
+		let get_vars_count var clause =
+			let vars_clause = split ' ' clause in
+			let rec cycle_clause_vars var_freq k = 
+				if (k>=(List.length vars_clause)) 
+					then var_freq
+  			else if((var)=(int_of_string (List.nth vars_clause k))) 
+  				then	cycle_clause_vars (var_freq+1) (k+1)
+				else 
+					cycle_clause_vars var_freq (k+1)
+			in cycle_clause_vars 0 0
+		
+		
+		(* Take the clause list and the Hashtable. *)
+		(* The ht has the index as the clause number while the list in the *)
+		(* ht has the the variable number of 1 to list length.*)
+		(* E.g. ht.find ht 1 will give list [1;2;,...,;n] which has 1 with an int*)
+		(* value of the number of variables in the clause 1. While ht.find ht 2*)
+		(* will give the number of the second clause. *)
+		let order ht clauseList = 
+			(* Reorder the clause list according to sorting of clauses with max number of *)
+			(* variable count.*)
+			clauseList
+		
+		(*Take the expressionList and reorder according to same variables.*)
+		let order_clauses clauseList = 
+			let ht = Hashtbl.create 15 in
+			(*get max variable*)
+			let max_var = get_max_var clauseList 1 in
+			let rec cycle_clauses i = 
+				if (i>=(List.length clauseList)) then 
+					(*Return the modified List*)
+					order ht clauseList
+				else
+					begin
+    				(*count the occurences of the vars in the clause i*)
+    				let clause = at i clauseList in
+						let list = 
+      				let rec cycle_to_max_var var listFreq=
+      						if (var>= max_var) then (List.rev listFreq)
+      						else
+      						begin
+    								(* Does the var exist in the clause? if yes then *)
+        						(* add 1 to the position of list i *)
+        						let var_freq = get_vars_count var clause
+        						in cycle_to_max_var (i+1) ((string_of_int var_freq)::listFreq)
+        						(*Hashtbl.add ht i (var_freq::listFreq);*)
+  								end
+      				in cycle_to_max_var 1 []
+							in Hashtbl.add ht i list;
+  					  cycle_clauses (i+1)
+					end
+			in cycle_clauses 1
+		
+		(* Latest design. This has a new feature where the clause list generated after*)
+		(* build is nouw grouped to make the conjunction OBDD smaller. This works by *)
+		(* groupng the clauses that have the same variables staring with the clause with*)
+		(* the max number of a particular variable. The conjunction module then is run *)
+		(* with clause pairs that have the maximal number of same variables. This will ensure *)
+		(* the conjunction OBDD is shrunk at every call. Then the overall output of each pair*)
+		(* has an implicit conjunction as before. *May run conjunction between the output *)
+		(* conjunction OBDDs too*  *)
+		
+		let start_process_segmentation_with_grouping expressionList (h) (t) (seg_val) =
+			let expressionList = remove_quants (expressionList) in
+			(*Varibale grouping here to genrate a new expression list with *)
+			(* clauses in order of same variables in frequency number. For example*)
+			(* if original clauses was: 1 2 3; 4 5 6; 3 2 1; 6 5 4; rather than running conjunction *)
+			(* with 1 and 2 which has different variables (so large OBDD) we run it with 1 and 3 *)
+			(* and 2 and 4. Resulting in much smaller OBDDs especially if they were negation *)
+			(* varables*)
+			let expressionList = order_clauses (expressionList) in			
+			let rec segment conjunction_bdd_list exp_list bdd_list i j =
+				if (i>=(List.length expressionList)) then 
+					if (j=0) then List.rev (conjunction_bdd_list)
+					else
+						begin
+    					let conjunction_bdd = conjunction_clauses (exp_list) (bdd_list) (h) (t)
+    					in List.rev (conjunction_bdd::conjunction_bdd_list)
+						end
+				else if (j>=seg_val) then 
+					begin
+						(*CALL CONJUNCTION WITH bdd_list and exp_list and then reset*)
+						let conjunction_bdd = 
+							conjunction_clauses (exp_list) (bdd_list) (h) (t) in 						
+						let exp_list = [] in
+						let bdd_list = [] in
+						Hashtbl.clear h;
+						Hashtbl.clear t;
+						segment (conjunction_bdd::conjunction_bdd_list) exp_list bdd_list i 0
+					end
+				(* When j is segment value reset. Keep recursion until i = expressionList *)
+				else
+				let clause = (List.nth expressionList i) in 
+					if (check_clause clause) then 
+						begin
+							(*build the clause*)
+							segment conjunction_bdd_list 
+								(clause::exp_list) ((build_clause (clause) (h) (t))::bdd_list) (i+1) (j+1);
+						end
+					else (raise (Failure "The clause is not in correct format"))
+				in segment [] [] [] 0 0;;
 
 		
 					
