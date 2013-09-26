@@ -379,6 +379,16 @@
 					end
 			in cycle_clause_vars 0 1
 		
+		
+		let convert_ht_to_list ht_clauses length =
+			let rec iter_ht i new_clause_list =
+				if (i>length) then (List.rev new_clause_list) else 
+					begin
+						let clause = (Hashtbl.find ht_clauses i) in
+						iter_ht (i+1) (clause::new_clause_list)
+					end
+				in iter_ht 1 []
+		
 		(* Take the clause list and the Hashtable. *)
 		(* The ht has the index as the clause number while the list in the *)
 		(* ht has the the variable number of 1 to list length.*)
@@ -398,19 +408,21 @@
 			(* 1- Add up all the variable count. *)
 			(* 2- sort varibles according to max count. *)
   		(* 3- Order clause according to variables max occurence *)
-  		let rec cycle_clause_set i j =
-  			if (j>=(ht_length)-1) then (Hashtbl.find ht_clauses 1)
+  		let rec cycle_clause_set i =
+  			if (i>=(ht_length)-1) then 
+					(*Convert the HT in to clauseList*)
+					convert_ht_to_list ht_clauses ht_length
 				else
 					begin
     				let int_list_sum =	sum_vars_ht (ht_stats) (ht_length) (ht_length_clause) in
       			let variable_max_index = (max_var_int_index int_list_sum) in
       			let clause_max = get_var_ht ht_length ht_stats variable_max_index in
-      			switch_rows (ht_stats ) (ht_clauses) (j) (clause_max) ht_length_clause;
+      			switch_rows (ht_stats ) (ht_clauses) (i) (clause_max) ht_length_clause;
 						let clause_max2 = get_var_ht ht_length ht_stats  variable_max_index in
-      			switch_rows (ht_stats ) (ht_clauses) (j+1) (clause_max2) ht_length_clause;
-						cycle_clause_set (i+1) (j+2)
+      			switch_rows (ht_stats ) (ht_clauses) (i+1) (clause_max2) ht_length_clause;
+						cycle_clause_set (i+2)
   				end
-			in cycle_clause_set 1 1;;
+			in cycle_clause_set 1;;
 		
 		(*Take the expressionList and reorder according to same variables.*)
 		

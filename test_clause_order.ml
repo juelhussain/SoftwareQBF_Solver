@@ -39,7 +39,7 @@ order_clauses (clauseList_ord3) (ht_ord3) (ht_clause3);;
 let ht_clause4 = Hashtbl.create 15;;
 let ht_ord4 = Hashtbl.create 15;;
 
-let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 1 3";"2 -2 2 2";"-1 1 1 -1 1"];;
+let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 2 3";"2 -2 2 2";"-1 1 1 -1 1"];;
 (*The out put should be in order:*)
 (* ["1 -1 1 1";"-1 1 1 -1 1";"2 -2 2 2 -2";"2 -2 2 2";"3 -3 1 3"] *)
 (*string = "2 -2 2 2 -2" when 1 of "3 -3 1 3" is changed to 2*)
@@ -47,7 +47,35 @@ let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 1 3";"2 -2 2 2";"-1 1 1 -1
 
 order_clauses (clauseList_ord4) (ht_ord4) (ht_clause4);;
 
+(**)
+(* let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 1 3";"2 -2 2 2";"-1 1 1 -1 1"];;
+val ht_clause4 : ('_a, '_b) Hashtbl.t = <abstr>
+# val ht_ord4 : ('_a, '_b) Hashtbl.t = <abstr>
+#   val clauseList_ord4 : string list =
+  ["1 -1 1 1"; "2 -2 2 2 -2"; "3 -3 1 3"; "2 -2 2 2"; "-1 1 1 -1 1"]
+# order_clauses (clauseList_ord4) (ht_ord4) (ht_clause4);;
+leaving cycle_clauses
+- : string = "-1 1 1 -1 1"
+# let ht_clause4 = Hashtbl.create 15;;
+let ht_ord4 = Hashtbl.create 15;;
 
+let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 2 3";"2 -2 2 2";"-1 1 1 -1 1"];;
+val ht_clause4 : ('_a, '_b) Hashtbl.t = <abstr>
+# val ht_ord4 : ('_a, '_b) Hashtbl.t = <abstr>
+#   val clauseList_ord4 : string list =
+  ["1 -1 1 1"; "2 -2 2 2 -2"; "3 -3 2 3"; "2 -2 2 2"; "-1 1 1 -1 1"]
+# order_clauses (clauseList_ord4) (ht_ord4) (ht_clause4);;
+leaving cycle_clauses
+- : string = "2 -2 2 2 -2"
+# Hashtbl.find ht_clause4 1;;
+- : string = "2 -2 2 2 -2"
+# Hashtbl.find ht_clause4 2;;
+- : string = "2 -2 2 2"
+# Hashtbl.find ht_clause4 3;;
+- : string = "-1 1 1 -1 1"
+# Hashtbl.find ht_clause4 4;;
+- : string = "1 -1 1 1"*)
+(* *)
 
 
 
