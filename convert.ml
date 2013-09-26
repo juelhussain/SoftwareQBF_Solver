@@ -231,7 +231,202 @@
 					else (string_to_disjunction clause)					
 			
 	
+			(* returns the element at position k of list given *)
+    let rec at k = function
+        | [] -> raise (Failure "at: List is empty")
+        | h :: t -> if k = 1 then h else at (k-1) t
+		
+		let rightHT	(ht) = 
+			Hashtbl.fold (fun k v acc -> (match v with 
+			| (_,x) -> x) :: acc) ht [];;	
+
+		let get_var_ht	(ht) = 
+			Hashtbl.fold (fun k v acc -> (match v with
+			| [] -> raise Not_found 
+			| (_,x) -> x) :: acc) ht [];;		
+		
+		let get_var_ht ht var =
+			(*Order the clauses according to given variable number*)
+			let index_no =
+			let rec find_clause num i index =
+				if (i>= Hashtbl.length ht) then index 
+				else 
+					begin
+    				let clause = Hashtbl.find ht i in
+    				let max = List.nth clause (var-1) in
+    				if ((int_of_string max) > num) then find_clause (int_of_string max) (i+1) (i) else find_clause num (i+1) (index)
+  				end
+				in find_clause (-1) 1 (-1)
+			in index_no
+			
+			
+		let get_max_var (clauseList) =
+			let rec iter clause i var_i= 
+				if (i = (List.length clauseList)) then 
+					 "complete\n"
+    			else
+						begin
+							let varList = (split ' ' clause) in
+							for j = 1 to (List.length varList) do
+								Printf.printf "not complete %s\n" (at j varList)
+								done;
+								("test"^(at i clauseList));
+							iter (at (i+1) (clauseList)) (i+1) var_i							
+						end
+				 in iter (at 1 clauseList) (1) (-1)	
+		
+		let remove_neg var =
+			if (String.sub var 0 1="-") then 
+					let var = (String.sub var 1 ((String.length var)-1)) 	in var
+			else var 
+		
+		(* As select_max_var but higher value takes priority*)			
+		let get_max_var (clauseList) (max_or_total: int)=
+			let clauseList = (List.rev ("0"::(List.rev clauseList))) in
+    	let rec iter clause i var_i k= 
+    		if (i >= (List.length clauseList)) then 
+						if (max_or_total = 1) then 
+							begin var_i end else k
+    			else
+						begin
+  						(*Split the clause up*)
+  						let varList = (split ' ' clause) in
+							let rec cycleVarList j =
+								if (j=(List.length varList)) then 
+									begin
+										let var1 = (at j varList) in	
+										let var = remove_neg var1 in 					
+										Printf.printf "This is the var %s\n" var;
+										if ((int_of_string var) > var_i) then 
+											iter (at (i+1) (clauseList)) (i+1) (int_of_string (var)) (j+k)
+										else
+										 	iter (at (i+1) (clauseList)) (i+1) var_i (j+k)
+									end
+								else
+									begin
+										Printf.printf "This is the var %s\n" (at j varList);
+										cycleVarList (j+1)
+									end
+								in cycleVarList 1;
+  					end 
+    in iter (at 1 clauseList) (1) (-1) 0
+		
+		let get_vars_count var clause =
+			let vars_clause = split ' ' clause in
+			let rec cycle_clause_vars var_freq k = 
+				if (k>=(List.length vars_clause)) 
+					then var_freq
+  			else if((var)=(int_of_string (List.nth vars_clause k))) 
+  				then	cycle_clause_vars (var_freq+1) (k+1)
+				else 
+					cycle_clause_vars var_freq (k+1)
+			in cycle_clause_vars 0 0
+		
+		let sum_vars_ht (ht) =
+			let rec sum_vars new_list j =
+				if (j>=(List.length (Hashtbl.find ht 1))) then (List.rev new_list)
+				else
+				begin
+  				let var_count =
+						let rec sum_clause var i =
+							(if (i>=(Hashtbl.length ht)) then var
+      				else
+      					begin
+									let clause = Hashtbl.find ht i in		
+          						let var = var + (int_of_string (List.nth clause j)) in
+          						sum_clause (var) (i+1)
+      						end)
+      				in sum_clause 0 1;
+							in sum_vars (var_count::new_list) (j+1)
+					end
+		in sum_vars [] 0
+		
+		let max_var_int_list int_list =
+			let rec max var i =
+				if (i>=(List.length int_list)) then var 
+				else
+					begin
+						let var1 = (List.nth int_list i) in
+						if (var1 > var) then max (var1) (i+1) else max (var) (i+1)
+					end				
+				in max (if(List.length int_list>0) then List.nth int_list 0 else -1) 1
+		
+		let max_var_int_index int_list =
+			let rec max var i index =
+				if (i>=(List.length int_list)) then index
+				else
+					begin
+						let var1 = (List.nth int_list i) in
+						if (var1 > var) then max (var1) (i+1) (i) else max (var) (i+1) (index)
+					end				
+				in max (List.nth int_list 0) (1) (-1)
+		
+		(* Take the clause list and the Hashtable. *)
+		(* The ht has the index as the clause number while the list in the *)
+		(* ht has the the variable number of 1 to list length.*)
+		(* E.g. ht.find ht 1 will give list [1;2;,...,;n] which has 1 with an int*)
+		(* value of the number of variables in the clause 1. While ht.find ht 2*)
+		(* will give the number of the second clause. *)
+		let order ht clauseList = 
+			(* Reorder the clause list according to sorting of clauses with max number of *)
+			(* variable count.*)
+			(* 1- Add up all the variable count. *)
+			let int_list_sum =	sum_vars_ht (ht) in
+			(* 2- sort varibles according to max count. *)
+			let variable_max_index = max_var_int_index int_list_sum in
+			(* 3- Order clause according to variables max occurence *)
+			clauseList
+		
+		(*Take the expressionList and reorder according to same variables.*)
+		
+		(* Latest design. This is a new feature where the clause list generated after*)
+		(* build is now grouped to make the conjunction OBDD smaller. This works by *)
+		(* groupng the clauses that have the same variables staring with the clause with*)
+		(* the max number of a particular variable. The conjunction module then is run *)
+		(* with clause pairs that have the maximal number of same variables. This will ensure *)
+		(* the conjunction OBDD is shrunk at every call. Then the overall output of each pair*)
+		(* has an implicit conjunction as before. *May run conjunction between the output *)
+		(* conjunction OBDDs too*  *)
+		
+		
+		let order_clauses clauseList = 
+			(*Varibale grouping here to genrate a new expression list with *)
+			(* clauses in order of same variables in frequency number. For example*)
+			(* if original clauses was: 1 2 3; 4 5 6; 3 2 1; 6 5 4; rather than running conjunction *)
+			(* with 1 and 2 which has different variables (so large OBDD) we run it with 1 and 3 *)
+			(* and 2 and 4. Resulting in much smaller OBDDs especially if they were negation *)
+			(* varables*)
+			let ht = Hashtbl.create 15 in
+			(*get max variable*)
+			let max_var = get_max_var clauseList 1 in
+			let rec cycle_clauses i = 
+				if (i>=(List.length clauseList)) then 
+					(*Return the modified List*)
+					order ht clauseList
+				else
+					begin
+    				(*count the occurences of the vars in the clause i*)
+    				let clause = at i clauseList in
+						let list = 
+      				let rec cycle_to_max_var var listFreq=
+      						if (var>= max_var) then (List.rev listFreq)
+      						else
+      						begin
+    								(* Does the var exist in the clause? if yes then *)
+        						(* add 1 to the position of list i *)
+        						let var_freq = get_vars_count var clause
+        						in cycle_to_max_var (i+1) ((string_of_int var_freq)::listFreq)
+        						(*Hashtbl.add ht i (var_freq::listFreq);*)
+  								end
+      				in cycle_to_max_var 1 []
+							in Hashtbl.add ht i list;
+  					  cycle_clauses (i+1)
+					end
+			in cycle_clauses 1
+		
 					
+							
+											
 (*	end ;;*)
 	
 	

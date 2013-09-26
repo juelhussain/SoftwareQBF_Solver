@@ -349,6 +349,44 @@
 					cycle_clause_vars var_freq (k+1)
 			in cycle_clause_vars 0 0
 		
+		let sum_vars_ht (ht) =
+			let rec sum_vars new_list j =
+				if (j>=(List.length (Hashtbl.find ht 1))) then (List.rev new_list)
+				else
+				begin
+  				let var_count =
+						let rec sum_clause var i =
+							(if (i>=(Hashtbl.length ht)) then var
+      				else
+      					begin
+									let clause = Hashtbl.find ht i in		
+          						let var = var + (int_of_string (List.nth clause j)) in
+          						sum_clause (var) (i+1)
+      						end)
+      				in sum_clause 0 1;
+							in sum_vars (var_count::new_list) (j+1)
+					end
+		in sum_vars [] 0
+		
+		let max_var_int_list int_list =
+			let rec max var i =
+				if (i>=(List.length int_list)) then var 
+				else
+					begin
+						let var1 = (List.nth int_list i) in
+						if (var1 > var) then max (var1) (i+1) else max (var) (i+1)
+					end				
+				in max (if(List.length int_list>0) then List.nth int_list 0 else -1) 1
+		
+		let max_var_int_index int_list =
+			let rec max var i index =
+				if (i>=(List.length int_list)) then index
+				else
+					begin
+						let var1 = (List.nth int_list i) in
+						if (var1 > var) then max (var1) (i+1) (i) else max (var) (i+1) (index)
+					end				
+				in max (List.nth int_list 0) (1) (-1)
 		
 		(* Take the clause list and the Hashtable. *)
 		(* The ht has the index as the clause number while the list in the *)
@@ -359,6 +397,11 @@
 		let order ht clauseList = 
 			(* Reorder the clause list according to sorting of clauses with max number of *)
 			(* variable count.*)
+			(* 1- Add up all the variable count. *)
+			let int_list_sum =	sum_vars_ht (ht) in
+			(* 2- sort varibles according to max count. *)
+			let variable_max_index = max_var_int_index int_list_sum in
+			(* 3- Order clause according to variables max occurence *)
 			clauseList
 		
 		(*Take the expressionList and reorder according to same variables.*)
@@ -392,7 +435,7 @@
 			in cycle_clauses 1
 		
 		(* Latest design. This has a new feature where the clause list generated after*)
-		(* build is nouw grouped to make the conjunction OBDD smaller. This works by *)
+		(* build is now grouped to make the conjunction OBDD smaller. This works by *)
 		(* groupng the clauses that have the same variables staring with the clause with*)
 		(* the max number of a particular variable. The conjunction module then is run *)
 		(* with clause pairs that have the maximal number of same variables. This will ensure *)
