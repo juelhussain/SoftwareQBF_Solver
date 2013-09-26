@@ -245,13 +245,14 @@
 				add_zero list1 (i+1)
 				in add_zero [] 0
 			
-		let switch_rows (ht_stats) (ht) (index) (index_placement) (length_clause) =
-			let old_val = Hashtbl.find ht index_placement in
-			let new_val = Hashtbl.find ht index in
-			Hashtbl.add ht index_placement new_val;
-			Hashtbl.add ht (index) (old_val);
-			Hashtbl.add ht_stats index_placement (zero_list length_clause);
-			Hashtbl.add ht_stats index (zero_list length_clause)
+		let switch_rows (ht_stats) (ht) (index) (clause_max_index) (length_clause) =
+			let chosen_val = Hashtbl.find ht clause_max_index in
+			let redundant_val = Hashtbl.find ht index in
+			let redundant_val_stats = Hashtbl.find ht_stats index in
+			Hashtbl.add ht clause_max_index redundant_val;
+			Hashtbl.add ht (index) (chosen_val);
+			Hashtbl.add ht_stats index (zero_list length_clause);
+			Hashtbl.add ht_stats clause_max_index (redundant_val_stats)
 			;; 
 		
 		(* This will return the clause index of clause list that has the highest*)
@@ -385,27 +386,31 @@
 		(* value of the number of variables in the clause 1. While ht.find ht 2*)
 		(* will give the number of the second clause. *)
 		
-		let order ht ht_clauses clauseList = 
+		let order ht_stats ht_clauses clauseList = 
 			(* Reorder the clause list according to sorting of clauses with max number of *)
 			(* variable count.*)
 			(* Hashtable length is set up first because manipulation of HT increases HT length*)
 			(* without adding any values. This is because of immutable fields. When values are*)
 			(* replaced they are merely added on top increasing size and removing the item recovers*)
 			(* the previous item.*)
-			let ht_length_clause = List.length (Hashtbl.find ht 1) in
-			let ht_length = Hashtbl.length ht in
+			let ht_length_clause = List.length (Hashtbl.find ht_stats 1) in
+			let ht_length = Hashtbl.length ht_stats in
 			(* 1- Add up all the variable count. *)
-			print_string "calling int_list_sum\n";
-			let int_list_sum =	sum_vars_ht (ht) (ht_length) (ht_length_clause) in
 			(* 2- sort varibles according to max count. *)
-			print_string "calling variable_max_index\n";
-			let variable_max_index = (max_var_int_index int_list_sum) in
-			(* 3- Order clause according to variables max occurence *)
-			print_string "calling get_var_ht\n";
-			let clause_max = get_var_ht ht_length ht variable_max_index in
-			print_string "calling switch rows\n";
-			switch_rows (ht) (ht_clauses) (1) (clause_max) ht_length_clause;
-			Hashtbl.find ht_clauses 1;;
+  		(* 3- Order clause according to variables max occurence *)
+  		let rec cycle_clause_set i =
+  			if (i>ht_length) then (Hashtbl.find ht_clauses 1)
+				else
+					begin
+    				let int_list_sum =	sum_vars_ht (ht_stats) (ht_length) (ht_length_clause) in
+      			let variable_max_index = (max_var_int_index int_list_sum) in
+      			let clause_max = get_var_ht ht_length ht_stats variable_max_index in
+      			switch_rows (ht_stats ) (ht_clauses) (i) (clause_max) ht_length_clause;
+						let clause_max2 = get_var_ht ht_length ht_stats  variable_max_index in
+      			switch_rows (ht_stats ) (ht_clauses) (i+1) (clause_max2) ht_length_clause;
+						cycle_clause_set (i+2)
+  				end
+			in cycle_clause_set 1;;
 		
 		(*Take the expressionList and reorder according to same variables.*)
 		
@@ -427,8 +432,8 @@
 			(* varables*)
 			
 		
-		let order_clauses clauseList (ht) (ht_clauses)= 
-			(*let ht = Hashtbl.create 15 in
+		let order_clauses clauseList (ht_stats) (ht_clauses)= 
+			(*let ht_stats= Hashtbl.create 15 in
 			let ht_clauses = Hashtbl.create 15 in*)
 			(*get max variable*)
 			let max_var = get_max_var clauseList 1 in
@@ -437,7 +442,7 @@
 					(*Return the modified List*)
 					begin
 					print_string "leaving cycle_clauses\n";
-					order ht ht_clauses clauseList
+					order ht_stats ht_clauses clauseList
 					end
 				else
 					begin
@@ -453,11 +458,11 @@
           						let var_freq = get_vars_count var clause
           						in 
 											cycle_to_max_var (var+1) ((string_of_int (var_freq))::listFreq)
-          						(*Hashtbl.add ht i (var_freq::listFreq);*)
+          						(*Hashtbl.add ht_statsi (var_freq::listFreq);*)
     								end
       					in cycle_to_max_var 1 []
 							in 
-							Hashtbl.add ht i stats_list;
+							Hashtbl.add ht_stats i stats_list;
 							Hashtbl.add (ht_clauses) (i) (clause);
   					  cycle_clauses (i+1)
 					end
