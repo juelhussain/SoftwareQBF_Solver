@@ -93,7 +93,7 @@
 							let header = "p cnf "^(get_var_num (clauseList))^(string_of_int(Write.get_number_of_clauses (Convert.split '\n' qdimacs) - (List.length quant_list)))^"\n" in
 							Printf.printf "QBF_Solver- segmentation value: %s\n" (string_of_int segment_val);
 							print_string"---------------------------QDIMACS FORMAT------------------------------------------\n\n";	
-							Write.write ("output_files/"^(String.sub str 6 ((String.length str)-14))^"_QBFsolver.qdimacs" ) (header^(qdimacs));
+							Write.write ("output_files/"^(String.sub str 6 ((String.length str)-14))^"_ord_QBFsolver.qdimacs" ) (header^(qdimacs));
 							(*Printf.printf "%s\n"(qdimacs);	*)				
            with
              Failure str -> print_endline ("QBF_Solver- Error: " ^ str)						

@@ -61,8 +61,8 @@
 							let clauseList=List.rev clauseList in
 							close_in ic;
 							(*Printf.printf "QBF_Solver- There are %d clause in the given file\n" (List.length clauseList);*)
-							(*print_endline "Input file:";
-							Print.print_string_list (clauseList);*)
+							print_endline "Input file header:";
+							print_string (List.nth clauseList 0);
 							(*print_endline "";*)
 							let expList = Syntax.time1 "Conversion to Expression" Convert.convert_clauses_to_ExpressionList (clauseList) in
 							let quant_list = Manager.sep_quants expList in
