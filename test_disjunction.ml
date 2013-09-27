@@ -185,7 +185,7 @@ let dis_clause4 = get_clause_disjunct string_clause 8 h4 t4
 	(*Execution time: 52.746959s*)
 
 
-	let new_combine_dis2 = time get_clause_disjunct "1 32 2 13 3 33 4 5 12 6 7 8 11 9 10 14 41 19" 4 long_h1 long_t1;;
+	let new_combine_dis2 = time4 "disjunction segmentation" get_clause_disjunct "1 32 2 13 3 33 4 5 12 6 7 8 11 9 10 14 41 19" 4 long_h1 long_t1;;
 	(*Execution time: 0.222854s*)
 				
 	new_combine_dis2=List.nth new_combine_dis 0;;

@@ -236,6 +236,15 @@
         | [] -> raise (Failure "at: List is empty")
         | h :: t -> if k = 1 then h else at (k-1) t
 		
+		(*Manipulating the input qdimacs clause list*)
+		let remove_zeros clauseList =
+			let rec rem new_clause_list i =
+					let clause = (at clauseList i) in
+					clauseitems = split '0' clause;
+					rem clauseitems@new_clause_list (i+1)
+				in rem [] 1
+			
+		
 		
 		
 		let zero_list j =
@@ -276,7 +285,7 @@
 			(*in let index_no = switch_rows ht index_no 1*) in index_no
 			
 			
-		let get_max_var (clauseList) =
+		(*let get_max_var (clauseList) =
 			let rec iter clause i var_i= 
 				if (i = (List.length clauseList)) then 
 					 "complete\n"
@@ -289,7 +298,7 @@
 								("test"^(at i clauseList));
 							iter (at (i+1) (clauseList)) (i+1) var_i							
 						end
-				 in iter (at 1 clauseList) (1) (-1)	
+				 in iter (at 1 clauseList) (1) (-1)	*)
 		
 		let remove_neg var =
 			if (String.sub var 0 1="-") then 
@@ -444,18 +453,15 @@
 			(* varables*)
 			
 		
-		let order_clauses clauseList (ht_stats) (ht_clauses)= 
-			(*let ht_stats= Hashtbl.create 15 in
-			let ht_clauses = Hashtbl.create 15 in*)
+		let order_clauses clauseList = 
+			let ht_stats= Hashtbl.create 15 in
+			let ht_clauses = Hashtbl.create 15 in
 			(*get max variable*)
 			let max_var = get_max_var clauseList 1 in
 			let rec cycle_clauses i = 
 				if (i>(List.length clauseList)) then 
 					(*Return the modified List*)
-					begin
-					print_string "leaving cycle_clauses\n";
 					order ht_stats ht_clauses clauseList
-					end
 				else
 					begin
     				(*count the occurences of the vars in the clause i*)

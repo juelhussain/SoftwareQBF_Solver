@@ -39,7 +39,7 @@ order_clauses (clauseList_ord3) (ht_ord3) (ht_clause3);;
 let ht_clause4 = Hashtbl.create 15;;
 let ht_ord4 = Hashtbl.create 15;;
 
-let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 2 3";"2 -2 2 2";"-1 1 1 -1 1"];;
+let clauseList_ord4 = ["1 -1 1 1";"2 -2 2 2 -2";"3 -3 1 3";"2 -2 2 2";"-1 1 1 -1 1"];;
 (*The out put should be in order:*)
 (* ["1 -1 1 1";"-1 1 1 -1 1";"2 -2 2 2 -2";"2 -2 2 2";"3 -3 1 3"] *)
 (*string = "2 -2 2 2 -2" when 1 of "3 -3 1 3" is changed to 2*)

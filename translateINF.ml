@@ -113,7 +113,7 @@
 		  | And(Neg(p),q) -> if (p=q) then (remove_contras q) else And(Neg(p), remove_contras q)
 			| _ -> fm
 			
-		let rec to_cnf_with_contra formula =
+		(*let rec to_cnf_with_contra formula =
 			match formula with 
 			| BImp(p,q) -> to_cnf_with_contra(And(Imp(to_cnf_with_contra p, to_cnf_with_contra q),Imp( to_cnf_with_contra q,to_cnf_with_contra p)))
 			| Imp(p,q) -> to_cnf_with_contra(Or(Neg(to_cnf_with_contra p), to_cnf_with_contra q))
@@ -136,7 +136,7 @@
 			| And(p,q) -> And(to_cnf_with_contra p, to_cnf_with_contra q)
 			| Or(p,q) -> Or(to_cnf_with_contra p, to_cnf_with_contra q)
 			| Neg(p) -> Neg(to_cnf_with_contra p)
-			| _ -> formula
+			| _ -> formula*)
 
 
 		(* This function converts back a variable assignment that was given using the *)

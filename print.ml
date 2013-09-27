@@ -111,4 +111,27 @@
 	[] -> ""
 	| e::l -> get_exp_qdimacs e ^ " 0\n" ^ get_exp_list_to_qdimacs l;;
 
+	let rec get_exp_list_to_qdimacs_no_zero = function 
+	[] -> ""
+	| e::l -> get_exp_qdimacs e ^ " \n" ^ get_exp_list_to_qdimacs_no_zero l;;
 
+	(*let rec get_exp_list_to_qdimacs_no_zero_list new_list = function 
+	[] -> []
+	| e::l -> let new_list = ((get_exp_qdimacs e) ::new_list) in get_exp_list_to_qdimacs_no_zero_list l;;*)
+	
+	let rec at k = function
+        | [] -> raise (Failure "at: List is empty")
+        | h :: t -> if k = 1 then h else at (k-1) t
+				
+	let get_qdimacs_list expList=
+		let rec get_items i new_list = 
+			if (i>(List.length expList) ) then (List.rev new_list)
+			else 
+				begin
+    			let el = (at i expList) in
+    			get_items (i+1)((get_exp_qdimacs el) ::new_list)
+				end
+    	in get_items 1 []
+	
+	
+	

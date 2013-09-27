@@ -61,11 +61,17 @@
 							let clauseList=List.rev clauseList in
 							close_in ic;
 							(*Printf.printf "QBF_Solver- There are %d clause in the given file\n" (List.length clauseList);*)
-							(*print_endline "Input file:";
-							Print.print_string_list (clauseList);*)
-							(*print_endline "";*)
+							print_endline "Input file header:";
+							print_string (List.nth clauseList 0);
+							print_endline "";
+							Printf.printf "Running the Ordering of Clauses\n*************************\n";
 							let expList = Syntax.time1 "Conversion to Expression" Convert.convert_clauses_to_ExpressionList (clauseList) in
 							let quant_list = Manager.sep_quants expList in
+							let expList = Manager.remove_quants expList in
+							let exp_list_qdimacs = Print.get_qdimacs_list (expList) in
+							let ordered_clauseList = Syntax.time1 "Clause ordering:" Convert.order_clauses exp_list_qdimacs in
+							(*Print.print_string_list (ordered_clauseList);*)
+							let expList = Syntax.time1 "Conversion to Expression second: " Convert.convert_clauses_to_ExpressionList (ordered_clauseList) in
 							(*Print.print_exp_list (expList);*)
 							print_string "---- STARTNIG THE CONJUNCTION PROCESS NOW ----\n\n";
 							let exp_size = (List.length expList) in
